@@ -64,5 +64,8 @@ console.table(emptyProject.getItemsList());
 master.removeItem(fakeObject);
 master.removeItem(testItem);
 
-console.table(emptyProject.getItemsList());
+master.createItem("This is a new item", "now", "foo","high");
+master.createItem("This one goes to the empty project", "yesterday", "bar", "low", emptyProject.getID());
+
 console.table(master.getItemsList());
+console.table(emptyProject.getItemsList());

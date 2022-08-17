@@ -28,6 +28,20 @@ export default class MasterProject{
   }
 
   // items methods  
+  createItem(title,dueDate,description,priority,projectID = null){
+    const newItem = new toDoItem(title,dueDate,description,priority,false); // new items are always created with done === false
+    this.addItem(newItem);
+
+    if(projectID === null) return; // we are done
+
+    const projIndex = this.getProjectsList().findIndex(project => project.getID() === projectID);
+    if(projIndex === -1){
+      console.error(`No project with id ${projectID} found`);
+      return;
+    }
+    this.getProjectsList()[projIndex].addItem(newItem);
+  } // creates a new item and appends it to the master list and the secondary project if one is defined
+
   itemsLength(){
     return this.#itemsList.length;
   }
@@ -37,7 +51,8 @@ export default class MasterProject{
   removeItem(item){
     const index = this.#itemsList.findIndex(toDoItem => toDoItem.getID() === item.getID()); // find the index of the element we want to remove
     if(index === -1) return; // see if we found the element
-    // see if the item exists in any other project
+    
+    // see if the item exists in any other project and remove it
     this.#projectsList.forEach(project => {
       project.removeItem(item);
     });
