@@ -51,4 +51,15 @@ export default class toDoItem{
   flipDone(){
     this.#done = !this.#done;
   }
+
+  toJSON(){
+    return {
+      title: this.getTitle(),
+      dueDate: this.getDueDate(),
+      description: this.getDescription(),
+      priority: this.getPriority(),
+      done: this.isDone(),
+      id: this.getID(),
+    }
+  }
 }

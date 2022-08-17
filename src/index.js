@@ -80,3 +80,11 @@ console.table(emptyProject.getItemsList());
 // console.table(master.getItemsList());
 master.createProject("New And Improved",null,"A good project");
 console.table(master.getProjectsList());
+
+master.getItemsList()[1].setTitle("Awesomer");
+console.table(master.getItemsList());
+console.table(emptyProject.getItemsList());
+
+console.clear();
+const testJSON = JSON.stringify(master);
+console.log(testJSON);

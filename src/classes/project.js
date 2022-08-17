@@ -52,4 +52,13 @@ export default class Project{
     if(index === -1) return; // see if we found the element
     return this.getItemsList()[index];
   }
+
+  toJSON(){
+    return {
+      title : this.getTitle(),
+      itemsList : this.getItemsList(),
+      description : this.getDescription(),
+      id: this.getID(),
+    }
+  }
 }

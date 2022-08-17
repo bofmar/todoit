@@ -95,4 +95,12 @@ export default class MasterProject{
     if(index === -1) return; // see if we found the element
     return this.#projectsList[index];
   }
+
+  // JSON handling
+  toJSON(){
+    return {
+      itemList: this.getItemsList(),
+      projectsList: this.getProjectsList(),
+    }
+  }
 }
