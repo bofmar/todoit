@@ -1,5 +1,6 @@
 import toDoItem from "./classes/todo.js";
 import Project from "./classes/project.js";
+import MasterProject from "./classes/master.js";
 
 const testItem = new toDoItem("Make cake","1/1/22","Making cakes is awesome", "Low", false);
 
@@ -37,7 +38,6 @@ emptyProject.addItem(newObject2);
 emptyProject.addItem(newObject3);
 emptyProject.addItem(newObject4);
 
-console.clear();
 emptyProject.removeItem(fakeObject);
 console.table(emptyProject.getItemsList());
 
@@ -49,3 +49,23 @@ emptyProject.removeItem(newObject3);
 console.table(emptyProject.getItemsList());
 
 console.log(emptyProject.readItem(newObject2));
+console.clear();
+
+const master = new MasterProject();
+
+master.addItem(testItem);
+master.addItem(newObject1);
+master.addItem(newObject2);
+master.addItem(newObject3);
+master.addItem(newObject4);
+master.addItem(fakeObject);
+
+master.addProject(myProject);
+master.addProject(emptyProject);
+console.table(master);
+
+master.removeItem(fakeObject);
+master.removeProject(myProject);
+
+console.table(master.getItemsList());
+console.table(master.getProjectsList());
