@@ -41,10 +41,6 @@ emptyProject.addItem(newObject4);
 emptyProject.removeItem(fakeObject);
 console.table(emptyProject.getItemsList());
 
-
-emptyProject.removeItem(testItem);
-console.table(emptyProject.getItemsList());
-
 emptyProject.removeItem(newObject3);
 console.table(emptyProject.getItemsList());
 
@@ -62,10 +58,11 @@ master.addItem(fakeObject);
 
 master.addProject(myProject);
 master.addProject(emptyProject);
-console.table(master);
+
+console.table(emptyProject.getItemsList());
 
 master.removeItem(fakeObject);
-master.removeProject(myProject);
+master.removeItem(testItem);
 
+console.table(emptyProject.getItemsList());
 console.table(master.getItemsList());
-console.table(master.getProjectsList());

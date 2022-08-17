@@ -1,3 +1,5 @@
+import toDoItem from "./todo";
+
 export default class MasterProject{
   #title;
   #itemsList;
@@ -35,6 +37,11 @@ export default class MasterProject{
   removeItem(item){
     const index = this.#itemsList.findIndex(toDoItem => toDoItem.getID() === item.getID()); // find the index of the element we want to remove
     if(index === -1) return; // see if we found the element
+    // see if the item exists in any other project
+    this.#projectsList.forEach(project => {
+      project.removeItem(item);
+    });
+
     this.#itemsList.splice(index,1);
   }
   readItem(item){
