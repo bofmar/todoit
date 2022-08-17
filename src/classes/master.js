@@ -75,11 +75,19 @@ export default class MasterProject{
   removeProject(project){
     const index = this.#projectsList.findIndex(toDoItem => toDoItem.getID() === project.getID()); // find the index of the element we want to remove
     if(index === -1) return; // see if we found the element
+
+    // removing a project should remove all items associated with it
+    const projectToRemove = this.getProjectsList()[index];
+    for(let i = 0; i < projectToRemove.length();){
+      this.removeItem(projectToRemove.getItemsList()[i]);
+    }
+
+    // finally, remove the project
     this.#projectsList.splice(index,1);
   }
   readProject(project){
     const index = this.#projectsList.findIndex(toDoItem => toDoItem.getID() === project.getID()); // find the index of the element we want to remove
     if(index === -1) return; // see if we found the element
-    return this.#projectsList()[index];
+    return this.#projectsList[index];
   }
 }

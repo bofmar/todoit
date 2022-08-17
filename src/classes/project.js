@@ -45,7 +45,7 @@ export default class Project{
     this.#itemsList.splice(index,1);
   }
   removeAll(){
-    this.#itemsList = [];
+    //this.#itemsList = [];
   }
   readItem(item){
     const index = this.#itemsList.findIndex(toDoItem => toDoItem.getID() === item.getID());
