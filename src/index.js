@@ -85,6 +85,18 @@ master.getItemsList()[1].setTitle("Awesomer");
 console.table(master.getItemsList());
 console.table(emptyProject.getItemsList());
 
-console.clear();
 const testJSON = JSON.stringify(master);
 console.log(testJSON);
+
+console.table(JSON.parse(testJSON));
+
+
+console.clear();
+// console.table(master);
+const master2 = new MasterProject();
+master2.parseFromJSON(testJSON);
+console.table(master2);
+
+master2.getItemsList()[1].setTitle("this should be changed");
+console.table(master2.getItemsList());
+console.table(master2.getProjectsList()[1].getItemsList());

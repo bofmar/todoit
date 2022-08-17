@@ -29,8 +29,8 @@ export default class MasterProject{
   }
 
   // items methods  
-  createItem(title,dueDate,description,priority,projectID = null){
-    const newItem = new toDoItem(title,dueDate,description,priority,false); // new items are always created with done === false
+  createItem(title,dueDate,description,priority,id = null,projectID = null){
+    const newItem = new toDoItem(title,dueDate,description,priority,id,false); // new items are always created with done === false
     this.addItem(newItem);
 
     if(projectID === null) return; // we are done
@@ -62,6 +62,11 @@ export default class MasterProject{
   }
   readItem(item){
     const index = this.#itemsList.findIndex(toDoItem => toDoItem.getID() === item.getID());
+    if(index === -1) return; // see if we found the element
+    return this.getItemsList()[index];
+  }
+  findItemFromID(id){
+    const index = this.#itemsList.findIndex(toDoItem => toDoItem.getID() === id);
     if(index === -1) return; // see if we found the element
     return this.getItemsList()[index];
   }
@@ -102,5 +107,34 @@ export default class MasterProject{
       itemList: this.getItemsList(),
       projectsList: this.getProjectsList(),
     }
+  }
+
+  parseFromJSON(jsonString){
+    const jsonObject = JSON.parse(jsonString); // parse the JSON string to an object
+
+    for(let i = 0; i < jsonObject.itemList.length; i++){
+      this.recreateItem(jsonObject.itemList[i]);
+    } // put all the items back into master
+
+    for(let i = 0; i < jsonObject.projectsList.length; i++){
+      this.recreateProject(jsonObject.projectsList[i]);
+      // console.log(jsonObject.projectsList[i]);
+    }
+    
+    // console.log(jsonObject.itemList);
+  }
+
+  recreateItem(item){
+    this.createItem(item.title, item.dueDate, item.description, item.priority, item.id);
+  }
+
+  recreateProject(project){
+    const list = project.itemsList;
+
+    const newList = list.map(item => {
+      return this.findItemFromID(item.id);       
+    }); // find the created items and create a list with their references.
+
+    this.createProject(project.title,newList,project.description); // create the new project
   }
 }

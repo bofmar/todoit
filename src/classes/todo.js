@@ -6,13 +6,13 @@ export default class toDoItem{
   #done;
   #id;
 
-  constructor(title,dueDate,description,priority,done){
+  constructor(title,dueDate,description,priority,id,done){
     this.#title = title;
     this.#dueDate = dueDate;
     this.#description = description;
     this.#priority = priority;
     this.#done = done;
-    this.#id = crypto.randomUUID(); // ES6 crypto API to generate the ID
+    this.#id = id || crypto.randomUUID(); // ES6 crypto API to generate the ID
   }
 
   // geters
