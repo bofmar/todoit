@@ -21,6 +21,9 @@ export default class Project{
   getDescription(){
     return this.#description;
   }
+  getID(){
+    return this.#id;
+  }
 
   // seters
   setTitle(newTitle){
