@@ -1,3 +1,4 @@
+import Project from "./project";
 import toDoItem from "./todo";
 
 export default class MasterProject{
@@ -66,6 +67,10 @@ export default class MasterProject{
   }
 
   // projects methods
+  createProject(title,itemList,description){
+    const newPro = new Project(title,itemList,description);
+    this.addProject(newPro);
+  }
   projectsLength(){
     return this.#projectsList.length;
   }

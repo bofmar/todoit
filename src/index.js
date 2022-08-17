@@ -65,6 +65,8 @@ master.removeItem(testItem);
 
 master.createItem("This is a new item", "now", "foo","high");
 master.createItem("This one goes to the empty project", "yesterday", "bar", "low", emptyProject.getID());
+
+
  
 console.clear();
 master.createItem("This is a new item", "now", "foo","high","m");
@@ -73,6 +75,8 @@ console.table(master.getItemsList());
 console.table(emptyProject.getItemsList());
 
 
-master.removeProject(emptyProject);
-console.table(master.getItemsList());
+
+// master.removeProject(emptyProject);
+// console.table(master.getItemsList());
+master.createProject("New And Improved",null,"A good project");
 console.table(master.getProjectsList());
