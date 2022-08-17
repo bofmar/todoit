@@ -4,6 +4,7 @@ export default class toDoItem{
   #description;
   #priority;
   #done;
+  #id;
 
   constructor(title,dueDate,description,priority,done){
     this.#title = title;
@@ -11,6 +12,7 @@ export default class toDoItem{
     this.#description = description;
     this.#priority = priority;
     this.#done = done;
+    this.#id = crypto.randomUUID(); // ES6 crypto API to generate the ID
   }
 
   // geters
@@ -25,6 +27,9 @@ export default class toDoItem{
   }
   getPriority(){
     return this.#priority;
+  }
+  getID(){
+    return this.#id;
   }
   isDone(){
     return this.#done;
