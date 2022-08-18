@@ -19,3 +19,15 @@ export function createLi(target, arr){
     target.appendChild(newLi);
   }
 }
+
+export function createProjectLi(target, arr){
+  for(let i = 0; i < arr.length; i++){
+    const newLi = document.createElement("li");
+    createAndAppendText("button",newLi,arr[i].getTitle());
+    createAndAppendText("button",newLi,"Details");
+    createAndAppendText("button",newLi,arr[i].getDueDate());
+    createAndAppendText("button",newLi,"Edit");
+    createAndAppendText("button",newLi,"Delete");
+    target.appendChild(newLi);
+  }
+}

@@ -1,5 +1,4 @@
 import { createAndAppendText, createWithClass, createLi } from "../helpers";
-// ul > li items buttons and h2
 
 export default function sidebar(projects){
   const content = createWithClass("div","sidebar");

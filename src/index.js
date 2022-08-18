@@ -2,6 +2,7 @@ import toDoItem from "./classes/todo.js";
 import Project from "./classes/project.js";
 import MasterProject from "./classes/master.js";
 import sidebar from "./components/sidebar.js";
+import projectPanel from "./components/projectsPanel.js";
 
 const testItem = new toDoItem("Make cake","1/1/22","Making cakes is awesome", "Low", false);
 
@@ -105,3 +106,4 @@ console.table(master2.getProjectsList()[1].getItemsList());
 // DOM stuff
 const body = document.querySelector("body");
 body.appendChild(sidebar(master.getProjectsList()));
+body.appendChild(projectPanel(master));
