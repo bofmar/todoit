@@ -3,6 +3,7 @@ import Project from "./classes/project.js";
 import MasterProject from "./classes/master.js";
 import sidebar from "./components/sidebar.js";
 import projectPanel from "./components/projectsPanel.js";
+import { createProjectLi } from "./helpers.js";
 
 const testItem = new toDoItem("Make cake","1/1/22","Making cakes is awesome", "Low", false);
 
@@ -104,6 +105,24 @@ console.table(master2.getItemsList());
 console.table(master2.getProjectsList()[1].getItemsList());
 
 // DOM stuff
-const body = document.querySelector("body");
-body.appendChild(sidebar(master.getProjectsList()));
-body.appendChild(projectPanel(master));
+
+
+// Actual functionality
+
+(function initialize(){
+  const body = document.querySelector("body");
+  body.appendChild(sidebar(master.getProjectsList()));
+  body.appendChild(projectPanel(master));
+
+  const addItemButton = document.querySelector(".add-item-button");
+  addItemButton.addEventListener("click", ()=>{
+    addItem(master);
+  }); // handle adding items
+})();
+
+function addItem(master,targetProject = null){
+  const newItem = master.createItem("Title","One month", "This is a placeholder", "High", null, targetProject?.getID());
+  const ul = document.querySelector(".items-list");
+
+  createProjectLi(ul, [newItem]);
+}

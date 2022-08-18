@@ -33,7 +33,7 @@ export default class MasterProject{
     const newItem = new toDoItem(title,dueDate,description,priority,id,false); // new items are always created with done === false
     this.addItem(newItem);
 
-    if(projectID === null) return; // we are done
+    if(projectID === null) return newItem; // we are done
 
     const projIndex = this.getProjectsList().findIndex(project => project.getID() === projectID);
     if(projIndex === -1){
@@ -41,6 +41,8 @@ export default class MasterProject{
       return;
     }
     this.getProjectsList()[projIndex].addItem(newItem);
+
+    return newItem;
   } // creates a new item and appends it to the master list and the secondary project if one is defined
 
   itemsLength(){
