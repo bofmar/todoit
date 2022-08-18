@@ -11,3 +11,11 @@ export function createWithClass(type,className,message = ""){
 
   return newElement;
 }
+
+export function createLi(target, arr){
+  for(let i = 0; i < arr.length; i++){
+    const newLi = document.createElement("li");
+    createAndAppendText("button",newLi,arr[i]);
+    target.appendChild(newLi);
+  }
+}
