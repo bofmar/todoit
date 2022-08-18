@@ -1,7 +1,7 @@
 import { createAndAppendText, createWithClass, createLi } from "../helpers";
 
 export default function sidebar(projects){
-  const content = createWithClass("div","sidebar");
+  const content = createWithClass("nav","sidebar");
   const unorderedList = document.createElement("ul");
   content.appendChild(unorderedList);
 
