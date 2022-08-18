@@ -1,6 +1,7 @@
 import toDoItem from "./classes/todo.js";
 import Project from "./classes/project.js";
 import MasterProject from "./classes/master.js";
+import sidebar from "./components/sidebar.js";
 
 const testItem = new toDoItem("Make cake","1/1/22","Making cakes is awesome", "Low", false);
 
@@ -100,3 +101,7 @@ console.table(master2);
 master2.getItemsList()[1].setTitle("this should be changed");
 console.table(master2.getItemsList());
 console.table(master2.getProjectsList()[1].getItemsList());
+
+// DOM stuff
+const body = document.querySelector("body");
+body.appendChild(sidebar(master.getProjectsList()));
