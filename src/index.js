@@ -1,8 +1,12 @@
 import toDoItem from "./classes/todo.js";
 import Project from "./classes/project.js";
 import MasterProject from "./classes/master.js";
+
 import sidebar from "./components/sidebar.js";
 import projectPanel from "./components/projectsPanel.js";
+import today from "./components/today.js";
+import upcoming from "./components/upcoming.js";
+
 import { createProjectLi } from "./helpers.js";
 
 const testItem = new toDoItem("Make cake","1/1/22","Making cakes is awesome", "Low", false);
@@ -140,9 +144,11 @@ function swapPage(master,button,body){
         body.appendChild(projectPanel(master));
         break;
       case "Today" :
-        break; //TODO
+        body.appendChild(today(master));
+        break;
       case "Upcoming" :
-        break; //TODO
+        body.appendChild(upcoming(master));
+        break;
     }
   } // one of the default pages was selected
 }
