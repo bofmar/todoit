@@ -112,25 +112,22 @@ console.table(master2.getProjectsList()[1].getItemsList());
 
 
 // Actual functionality
+const body = document.querySelector("body");
+// TODO add here a global master variable
 
 (function initialize(){
-  const body = document.querySelector("body");
   body.appendChild(sidebar(master.getProjectsList()));
   body.appendChild(projectPanel(master));
 
-  const addItemButton = document.querySelector(".add-item-button");
-  addItemButton.addEventListener("click", ()=>{
-    addItem(master);
-  }); // handle adding items
+  hookButtons();
 
   const navButtons = document.querySelectorAll(".nav-button");
   navButtons.forEach(button => button.addEventListener("click", ()=> {
-    swapPage(master,button,body);
+    swapPage(button,body);
   }));
 })();
 
-function swapPage(master,button,body){
-  console.log(button.hasAttribute("id"));
+function swapPage(button,body){
   body.removeChild(body.lastChild);
 
   if(button.hasAttribute("id")){ // we are dealing with a project
@@ -151,9 +148,19 @@ function swapPage(master,button,body){
         break;
     }
   } // one of the default pages was selected
+
+  hookButtons();
 }
 
-function addItem(master,targetProject = null){
+function hookButtons(){
+  // on initial page load and after we switch pages, some buttons need to always be hooked with event listeners
+
+  document.querySelector(".add-item-button").addEventListener("click", ()=> {
+    addItem();
+  }); // the new add item button is hooked
+}
+
+function addItem(targetProject = null){
   const newItem = master.createItem("Title","One month", "This is a placeholder", "High", null, targetProject?.getID());
   const ul = document.querySelector(".items-list");
 
