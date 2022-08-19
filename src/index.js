@@ -1,12 +1,14 @@
+// OBJECTS
 import toDoItem from "./classes/todo.js";
 import Project from "./classes/project.js";
 import MasterProject from "./classes/master.js";
-
+// PAGES
 import sidebar from "./components/sidebar.js";
 import projectPanel from "./components/projectsPanel.js";
 import today from "./components/today.js";
 import upcoming from "./components/upcoming.js";
-
+import addItemModal from "./components/addItemModal.js";
+// APIs
 import { createProjectLi } from "./helpers.js";
 
 const testItem = new toDoItem("Make cake","1/1/22","Making cakes is awesome", "Low", false);
