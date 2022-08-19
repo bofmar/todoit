@@ -1,4 +1,4 @@
-import { createAndAppendText, createWithClass, createLi } from "../helpers";
+import { createAndAppendText, createWithClass, createNavProjectLi, createDefaultNavLi } from "../helpers";
 
 export default function sidebar(projects){
   const content = createWithClass("nav","sidebar");
@@ -7,16 +7,16 @@ export default function sidebar(projects){
 
   const defaultNamesList = ["All Projects", "Today", "Upcoming"];
 
-  createLi(unorderedList,defaultNamesList);
+  createDefaultNavLi(unorderedList,defaultNamesList);
   
   const projLi = document.createElement("li");
   createAndAppendText("h2",projLi,"Projects");
   unorderedList.appendChild(projLi);
 
-  const projectNames = [...projects].map(proj => {
-    return proj.getTitle();
-  });
-  createLi(unorderedList,projectNames);
+  // const projectNames = [...projects].map(proj => {
+  //   return proj.getTitle();
+  // });
+  createNavProjectLi(unorderedList,projects);
 
 
   return content;
