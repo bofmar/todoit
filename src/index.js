@@ -51,8 +51,6 @@ console.table(emptyProject.getItemsList());
 emptyProject.removeItem(newObject3);
 console.table(emptyProject.getItemsList());
 
-console.log(emptyProject.readItem(newObject2));
-
 const master = new MasterProject();
 
 master.addItem(testItem);

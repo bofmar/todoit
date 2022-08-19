@@ -46,15 +46,14 @@ export default class MasterProject{
   } // creates a new item and appends it to the master list and the secondary project if one is defined
 
   itemsLength(){
-    return this.#itemsList.length;
+    return this.getItemsList().length;
   }
   addItem(item){
     this.#itemsList.push(item);
   }
   removeItem(item){
-    const index = this.#itemsList.findIndex(toDoItem => toDoItem.getID() === item.getID()); // find the index of the element we want to remove
-    if(index === -1) return; // see if we found the element
-    
+    const index = this.getItemsList().findIndex(toDoItem => toDoItem.getID() === item.getID()); // find the index of the element we want to remove
+    if(index === -1) return;    
     // see if the item exists in any other project and remove it
     this.#projectsList.forEach(project => {
       project.removeItem(item);
@@ -62,14 +61,9 @@ export default class MasterProject{
 
     this.#itemsList.splice(index,1);
   }
-  readItem(item){
-    const index = this.#itemsList.findIndex(toDoItem => toDoItem.getID() === item.getID());
-    if(index === -1) return; // see if we found the element
-    return this.getItemsList()[index];
-  }
   findItemFromID(id){
-    const index = this.#itemsList.findIndex(toDoItem => toDoItem.getID() === id);
-    if(index === -1) return; // see if we found the element
+    const index = this.getItemsList().findIndex(toDoItem => toDoItem.getID() === id);
+    if(index === -1) return;
     return this.getItemsList()[index];
   }
 
@@ -79,15 +73,14 @@ export default class MasterProject{
     this.addProject(newPro);
   }
   projectsLength(){
-    return this.#projectsList.length;
+    return this.getProjectsList().length;
   }
   addProject(project){
     this.#projectsList.push(project);
   }
   removeProject(project){
-    const index = this.#projectsList.findIndex(toDoItem => toDoItem.getID() === project.getID()); // find the index of the element we want to remove
-    if(index === -1) return; // see if we found the element
-
+    const index = this.getProjectsList().findIndex(toDoItem => toDoItem.getID() === project.getID()); // find the index of the element we want to remove
+    if(index === -1) return;
     // removing a project should remove all items associated with it
     const projectToRemove = this.getProjectsList()[index];
     for(let i = 0; i < projectToRemove.length();){
@@ -97,14 +90,9 @@ export default class MasterProject{
     // finally, remove the project
     this.#projectsList.splice(index,1);
   }
-  readProject(project){
-    const index = this.#projectsList.findIndex(toDoItem => toDoItem.getID() === project.getID()); // find the index of the element we want to remove
-    if(index === -1) return; // see if we found the element
-    return this.#projectsList[index];
-  }
   findProjectFromID(id){
     const index = this.getProjectsList().findIndex(project => project.getID() === id);
-    if(index === -1) return; // see if we found the element
+    if(index === -1) return;
     return this.getProjectsList()[index];
   }
 

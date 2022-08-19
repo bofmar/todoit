@@ -34,18 +34,18 @@ export default class Project{
   }
 
   length(){
-    return this.#itemsList.length;
+    return this.getItemsList().length;
   }
   addItem(item){
     this.#itemsList.push(item);
   }
   removeItem(item){
-    const index = this.#itemsList.findIndex(toDoItem => toDoItem.getID() === item.getID()); // find the index of the element we want to remove
+    const index = this.getItemsList().findIndex(toDoItem => toDoItem.getID() === item.getID()); // find the index of the element we want to remove
     if(index === -1) return; // see if we found the element
     this.#itemsList.splice(index,1);
   }
-  readItem(item){
-    const index = this.#itemsList.findIndex(toDoItem => toDoItem.getID() === item.getID());
+  findItem(item){
+    const index = this.getItemsList().findIndex(toDoItem => toDoItem.getID() === item.getID());
     if(index === -1) return; // see if we found the element
     return this.getItemsList()[index];
   }
