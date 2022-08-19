@@ -74,8 +74,8 @@ export default class MasterProject{
   }
 
   // projects methods
-  createProject(title,itemList,description){
-    const newPro = new Project(title,itemList,description);
+  createProject(title,itemsList,description){
+    const newPro = new Project(title,itemsList,description);
     this.addProject(newPro);
   }
   projectsLength(){
@@ -106,7 +106,7 @@ export default class MasterProject{
   // JSON handling
   toJSON(){
     return {
-      itemList: this.getItemsList(),
+      itemsList: this.getItemsList(),
       projectsList: this.getProjectsList(),
     }
   }
@@ -114,8 +114,8 @@ export default class MasterProject{
   parseFromJSON(jsonString){
     const jsonObject = JSON.parse(jsonString); // parse the JSON string to an object
 
-    for(let i = 0; i < jsonObject.itemList.length; i++){
-      this.recreateItem(jsonObject.itemList[i]);
+    for(let i = 0; i < jsonObject.itemsList.length; i++){
+      this.recreateItem(jsonObject.itemsList[i]);
     } // put all the items back into master
 
     for(let i = 0; i < jsonObject.projectsList.length; i++){
@@ -123,7 +123,7 @@ export default class MasterProject{
       // console.log(jsonObject.projectsList[i]);
     }
     
-    // console.log(jsonObject.itemList);
+    // console.log(jsonObject.itemsList);
   }
 
   recreateItem(item){

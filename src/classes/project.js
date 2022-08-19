@@ -4,9 +4,9 @@ export default class Project{
   #description;
   #id;
 
-  constructor(title,itemList,description){
+  constructor(title,itemsList,description){
     this.#title = title;
-    this.#itemsList = itemList || [];
+    this.#itemsList = itemsList || [];
     this.#description = description;
     this.#id = crypto.randomUUID();
   }
