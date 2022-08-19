@@ -120,10 +120,7 @@ export default class MasterProject{
 
     for(let i = 0; i < jsonObject.projectsList.length; i++){
       this.recreateProject(jsonObject.projectsList[i]);
-      // console.log(jsonObject.projectsList[i]);
     }
-    
-    // console.log(jsonObject.itemsList);
   }
 
   recreateItem(item){

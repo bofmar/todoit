@@ -44,9 +44,6 @@ export default class Project{
     if(index === -1) return; // see if we found the element
     this.#itemsList.splice(index,1);
   }
-  removeAll(){
-    //this.#itemsList = [];
-  }
   readItem(item){
     const index = this.#itemsList.findIndex(toDoItem => toDoItem.getID() === item.getID());
     if(index === -1) return; // see if we found the element
