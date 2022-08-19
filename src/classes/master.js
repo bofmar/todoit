@@ -102,6 +102,11 @@ export default class MasterProject{
     if(index === -1) return; // see if we found the element
     return this.#projectsList[index];
   }
+  findProjectFromID(id){
+    const index = this.getProjectsList().findIndex(project => project.getID() === id);
+    if(index === -1) return; // see if we found the element
+    return this.getProjectsList()[index];
+  }
 
   // JSON handling
   toJSON(){

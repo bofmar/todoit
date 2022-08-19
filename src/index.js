@@ -118,7 +118,34 @@ console.table(master2.getProjectsList()[1].getItemsList());
   addItemButton.addEventListener("click", ()=>{
     addItem(master);
   }); // handle adding items
+
+  const navButtons = document.querySelectorAll(".nav-button");
+  navButtons.forEach(button => button.addEventListener("click", ()=> {
+    swapPage(master,button,body);
+  }));
 })();
+
+function swapPage(master,button,body){
+  console.log(button.hasAttribute("id"));
+  body.removeChild(body.lastChild);
+
+  if(button.hasAttribute("id")){ // we are dealing with a project
+    const project = master.findProjectFromID(button.getAttribute("id"));
+    body.appendChild(projectPanel(project));
+  }
+  else{
+    const name = button.innerText;
+    switch(name) {
+      case "All Projects" :
+        body.appendChild(projectPanel(master));
+        break;
+      case "Today" :
+        break; //TODO
+      case "Upcoming" :
+        break; //TODO
+    }
+  } // one of the default pages was selected
+}
 
 function addItem(master,targetProject = null){
   const newItem = master.createItem("Title","One month", "This is a placeholder", "High", null, targetProject?.getID());
