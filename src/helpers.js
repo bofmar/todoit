@@ -15,7 +15,8 @@ export function createWithClass(type,className,message = ""){
 export function createLi(target, arr){
   for(let i = 0; i < arr.length; i++){
     const newLi = document.createElement("li");
-    createAndAppendText("button",newLi,arr[i]);
+    const navButton = createWithClass("button", "nav-button", arr[i]);
+    newLi.appendChild(navButton);
     target.appendChild(newLi);
   }
 }
