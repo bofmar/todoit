@@ -123,6 +123,24 @@ body.appendChild(addItemModalDOM);
 
   hookButtons();
 
+  document.querySelector(".item-modal-add").addEventListener("click", (e)=> {
+    e.preventDefault();
+    const result = {
+      title: document.getElementById("item-title").value,
+      date: document.getElementById("item-due").value,
+      description: document.getElementById("item-description").value,
+      priority: document.getElementById("item-priority").value,
+      project: document.getElementById("item-project").value
+    }
+    addItem(result);
+    addItemModalDOM.close();
+  }); // hook the add button in the add item dialogue modal
+
+  document.querySelector(".item-modal-cancel").addEventListener("click", (e)=> {
+    e.preventDefault();
+    addItemModalDOM.close();
+  }); // hook the cancel button in the add item dialogue modal
+
   const navButtons = document.querySelectorAll(".nav-button");
   navButtons.forEach(button => button.addEventListener("click", ()=> {
     swapPage(button,body);
@@ -158,13 +176,12 @@ function hookButtons(){
   // on initial page load and after we switch pages, some buttons need to always be hooked with event listeners
 
   document.querySelector(".add-item-button").addEventListener("click", ()=> {
-    addItem();
+    addItemModalDOM.showModal();
   }); // the new add item button is hooked
 }
 
-function addItem(targetProject = null){
-  addItemModalDOM.showModal();
-  const newItem = master.createItem("Title","One month", "This is a placeholder", "High", null, targetProject?.getID());
+function addItem(proj){
+  const newItem = master.createItem(proj.title, proj.date, proj.description, proj.priority, null, proj.project === "none" ? null : proj.project);
   const ul = document.querySelector(".items-list");
 
   createProjectLi(ul, [newItem]);

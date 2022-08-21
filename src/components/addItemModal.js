@@ -69,6 +69,7 @@ export default function addItemModal(projects){
   projField.appendChild(defaultProj);
   for(let i = 0; i < projNames.length; i++){
     const nextOption = createOption(projNames[i].toLowerCase(), false);
+    nextOption.setAttribute("value",projects[i].getID());
     projField.appendChild(nextOption);
   }
   projDiv.appendChild(projField);
