@@ -186,3 +186,11 @@ function addItem(proj){
 
   createProjectLi(ul, [newItem]);
 }
+
+/*
+  TODO
+  *. Add mandatory fields to the modals
+  *. Work on the date picker, according to todo in addItemModal.js
+  *. Make the modal for the individual projects (should not allow to pick a different project than the one selected).
+  *. Make the forms reset the fields after submission or cancelation
+*/
