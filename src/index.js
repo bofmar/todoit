@@ -114,9 +114,11 @@ console.table(master2.getProjectsList()[1].getItemsList());
 // Actual functionality
 const body = document.querySelector("body");
 // TODO add here a global master variable
+body.appendChild(sidebar(master.getProjectsList()));
+const addItemModalDOM = addItemModal(master.getProjectsList());
+body.appendChild(addItemModalDOM);
 
 (function initialize(){
-  body.appendChild(sidebar(master.getProjectsList()));
   body.appendChild(projectPanel(master));
 
   hookButtons();
@@ -161,6 +163,7 @@ function hookButtons(){
 }
 
 function addItem(targetProject = null){
+  addItemModalDOM.showModal();
   const newItem = master.createItem("Title","One month", "This is a placeholder", "High", null, targetProject?.getID());
   const ul = document.querySelector(".items-list");
 

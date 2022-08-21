@@ -47,3 +47,25 @@ export function createProjectLi(target, arr){
     target.appendChild(newLi);
   }
 }
+
+export function createLabel(text,forAttr){
+  const label = document.createElement("label");
+  label.innerText = text;
+  label.htmlFor = forAttr;
+  return label;
+}
+
+export function setFieldAttributes(field,type,id,name){
+  field.setAttribute("type", type);
+  field.setAttribute("id", id);
+  field.setAttribute("name", name);
+}
+
+export function createOption(value,selected){
+  const option = document.createElement("option");
+  option.setAttribute("value",value);
+  option.selected = selected;
+  option.innerText = value.charAt(0).toUpperCase() + value.slice(1);
+
+  return option;
+}

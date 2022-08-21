@@ -13,9 +13,6 @@ export default function sidebar(projects){
   createAndAppendText("h2",projLi,"Projects");
   unorderedList.appendChild(projLi);
 
-  // const projectNames = [...projects].map(proj => {
-  //   return proj.getTitle();
-  // });
   createNavProjectLi(unorderedList,projects);
 
 
