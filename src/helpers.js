@@ -42,7 +42,7 @@ export function createProjectLi(target, arr){
     newLi.setAttribute("data-id", arr[i].getID());
     createAndAppendText("button",newLi,arr[i].getTitle());
     createAndAppendText("button",newLi,"Details");
-    createAndAppendText("button",newLi,arr[i].getDueDate());
+    createAndAppendText("span",newLi,arr[i].getDueDate());
     createAndAppendText("button",newLi,"Edit");
     createAndAppendText("button",newLi,"Delete");
     target.appendChild(newLi);
