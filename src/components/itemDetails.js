@@ -1,3 +1,5 @@
+import { capitalize } from "../helpers";
+
 export default function itemDetails(item){
   const modal = document.createElement("dialog");
   modal.classList.add("modal", "item-details-modal");
@@ -15,7 +17,7 @@ export default function itemDetails(item){
   modal.appendChild(due);
 
   const priority = document.createElement("p");
-  priority.innerText = `Priority: ${item.getPriority()}`;
+  priority.innerText = `Priority: ${capitalize(item.getPriority())}`;
   modal.appendChild(priority);
 
   const button = document.createElement("button");
