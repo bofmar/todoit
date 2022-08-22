@@ -162,11 +162,11 @@ body.appendChild(formErrorModal);
 
   const navButtons = document.querySelectorAll(".nav-button");
   navButtons.forEach(button => button.addEventListener("click", ()=> {
-    swapPage(button,body);
+    swapPage(button);
   }));
 })();
 
-function swapPage(button,body){
+function swapPage(button){
   body.removeChild(body.lastChild);
 
   if(button.hasAttribute("id")){ // we are dealing with a project
@@ -197,6 +197,22 @@ function hookButtons(){
   document.querySelector(".add-item-button").addEventListener("click", ()=> {
     addItemModalDOM.showModal();
   }); // the new add item button is hooked
+
+  const projWrap = document.querySelector(".project-wrapper");
+  const liItems = projWrap.querySelectorAll("li");
+  liItems.forEach(li =>{
+    const buttonsList = li.querySelectorAll("button");
+    const id = li.getAttribute("data-id");
+
+    // First element is the project name. Clicking it will toggle done state.
+    // Second element is the details. Clicking it will bring up a modal that states the description.
+    // Third element is the edit button. Clicking it will bring up the change dialogue.
+
+    // Final element is the delete button.Clicking it will remove the element.
+    buttonsList[3].addEventListener("click", ()=> {
+      deleteItem(id);
+    });
+  }); // hook the buttons in the items list
 }
 
 function addItem(proj){
@@ -204,6 +220,26 @@ function addItem(proj){
   const ul = document.querySelector(".items-list");
 
   createProjectLi(ul, [newItem]);
+  const newLi = ul.lastChild;
+  const newLiButtons = newLi.querySelectorAll("button");
+  newLiButtons[3].addEventListener("click", ()=> {
+    deleteItem(newItem.getID());
+  });
+}
+
+function deleteItem(id){
+  const item = master.findItemFromID(id);
+  master.removeItem(item);
+
+  const projWrap = document.querySelector(".project-wrapper");
+  const ul = projWrap.querySelector("ul");
+  const liItems = ul.querySelectorAll("li");
+
+  liItems.forEach(li => {
+    if(li.getAttribute("data-id") === id){
+      ul.removeChild(li);
+    }
+  });
 }
 
 // date tests
