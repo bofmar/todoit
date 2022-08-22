@@ -13,6 +13,7 @@ import itemDetails from "./components/itemDetails.js";
 import editItem from "./components/editItem.js";
 import addProject from "./components/addProject.js";
 import editProject from "./components/editProject.js";
+import deleteWarning from "./components/deleteWarning.js";
 // APIs
 import { createProjectLi, createNavProjectLi } from "./helpers.js";
 import test from "./time.js";
@@ -112,6 +113,10 @@ let currentPage = "All Projects";
 
     buttons[1].addEventListener("click", ()=> {
       editPro(id);
+    });
+
+    buttons[2].addEventListener("click", ()=> {
+      deletePro(id);
     });
   });
 })();
@@ -339,6 +344,29 @@ function editPro(id){
       const div = document.querySelector(".project-wrapper");
       div.querySelector("h2").innerText = project.getTitle();
     }
+  });
+}
+
+function deletePro(id){
+  const project = master.findProjectFromID(id);
+
+  const deleteModal = deleteWarning(project);
+  body.appendChild(deleteModal);
+
+  deleteModal.showModal();
+
+  document.getElementById("cancel").addEventListener("click", ()=> {
+    deleteModal.close();
+    body.removeChild(deleteModal);
+  });
+
+  document.getElementById("delete").addEventListener("click", ()=> {
+    master.removeProject(project);
+
+    deleteModal.close();
+    body.removeChild(deleteModal);
+    save();
+    location.reload();
   });
 }
 
