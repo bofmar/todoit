@@ -8,6 +8,7 @@ import projectPanel from "./components/projectsPanel.js";
 import today from "./components/today.js";
 import upcoming from "./components/upcoming.js";
 import addItemModal from "./components/addItemModal.js";
+import formError from "./components/formError.js";
 // APIs
 import { createProjectLi } from "./helpers.js";
 
@@ -117,6 +118,8 @@ const body = document.querySelector("body");
 body.appendChild(sidebar(master.getProjectsList()));
 const addItemModalDOM = addItemModal(master.getProjectsList());
 body.appendChild(addItemModalDOM);
+const formErrorModal = formError();
+body.appendChild(formErrorModal);
 
 (function initialize(){
   body.appendChild(projectPanel(master));
@@ -132,6 +135,10 @@ body.appendChild(addItemModalDOM);
       priority: document.getElementById("item-priority").value,
       project: document.getElementById("item-project").value
     }
+    if(result.title === ""){
+      formErrorModal.showModal();
+      return;
+    }
     addItem(result);
     addItemModalDOM.close();
   }); // hook the add button in the add item dialogue modal
@@ -140,6 +147,11 @@ body.appendChild(addItemModalDOM);
     e.preventDefault();
     addItemModalDOM.close();
   }); // hook the cancel button in the add item dialogue modal
+
+  formErrorModal.querySelector("button").addEventListener("click", (e)=>{
+    e.preventDefault();
+    formErrorModal.close();
+  }); // hook the ok button in the form error modal
 
   const navButtons = document.querySelectorAll(".nav-button");
   navButtons.forEach(button => button.addEventListener("click", ()=> {
