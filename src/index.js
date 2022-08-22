@@ -16,6 +16,7 @@ import test from "./time.js";
 
 const body = document.querySelector("body");
 const master = new MasterProject();
+master.parseFromJSON(localStorage.master);
 body.appendChild(sidebar(master.getProjectsList()));
 const addItemModalDOM = addItemModal(master.getProjectsList());
 body.appendChild(addItemModalDOM);
@@ -26,7 +27,6 @@ body.appendChild(formErrorModal);
 let currentPage = "All Projects";
 
 (function initialize(){
-  master.parseFromJSON(localStorage.master);
   body.appendChild(projectPanel(master));
 
   hookButtons();
@@ -111,6 +111,9 @@ function hookButtons(){
     const id = li.getAttribute("data-id");
 
     // First element is the project name. Clicking it will toggle done state.
+    buttonsList[0].addEventListener("click", ()=> {
+      changeDone(id);
+    });
     // Second element is the details. Clicking it will bring up a modal that states the description.
     buttonsList[1].addEventListener("click", ()=>{
       popItemDetails(id);
@@ -169,6 +172,15 @@ function popItemDetails(id){
     itemDetailsModal.close();
     body.removeChild(itemDetailsModal);
   });
+}
+
+function changeDone(id){
+  const item = master.findItemFromID(id);
+  console.log(item);
+  item.flipDone();
+  save();
+  // TODO remove bellow later
+  console.log(`${item.getTitle()} state is ${item.isDone()}`)
 }
 
 function save(){

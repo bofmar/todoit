@@ -29,8 +29,8 @@ export default class MasterProject{
   }
 
   // items methods  
-  createItem(title,dueDate,description,priority,id = null,projectID = null){
-    const newItem = new toDoItem(title,dueDate,description,priority,id,false); // new items are always created with done === false
+  createItem(title,dueDate,description,priority,id = null,projectID = null,done = false){
+    const newItem = new toDoItem(title,dueDate,description,priority,id,done); // new items are always created with done === false
     this.addItem(newItem);
 
     if(projectID === null) return newItem; // we are done
@@ -120,7 +120,7 @@ export default class MasterProject{
   }
 
   recreateItem(item){
-    this.createItem(item.title, item.dueDate, item.description, item.priority, item.id);
+    this.createItem(item.title, item.dueDate, item.description, item.priority, item.id, null, item.done);
   }
 
   recreateProject(project){
