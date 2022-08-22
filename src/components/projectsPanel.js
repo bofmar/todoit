@@ -1,10 +1,10 @@
 import { createWithClass, createAndAppendText, createProjectLi } from "../helpers";
 
-export default function projectPanel(project){
+export default function projectPanel(projects){
   const content = createWithClass("div","project-wrapper");
-  const itemsList = project.getItemsList();
+  const itemsList = projects.getItemsList();
 
-  createAndAppendText("h2",content,project.getTitle());
+  createAndAppendText("h2",content,projects.getTitle());
 
   const ul = createWithClass("ul","items-list");
   createProjectLi(ul,itemsList);

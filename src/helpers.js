@@ -39,6 +39,7 @@ export function createNavProjectLi(target, projects){
 export function createProjectLi(target, arr){
   for(let i = 0; i < arr.length; i++){
     const newLi = document.createElement("li");
+    newLi.setAttribute("data-id", arr[i].getID());
     createAndAppendText("button",newLi,arr[i].getTitle());
     createAndAppendText("button",newLi,"Details");
     createAndAppendText("button",newLi,arr[i].getDueDate());
