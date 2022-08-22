@@ -10,6 +10,7 @@ import upcoming from "./components/upcoming.js";
 import addItemModal from "./components/addItemModal.js";
 import formError from "./components/formError.js";
 import itemDetails from "./components/itemDetails.js";
+import editItem from "./components/editItem.js";
 // APIs
 import { createProjectLi } from "./helpers.js";
 import test from "./time.js";
@@ -119,6 +120,9 @@ function hookButtons(){
       popItemDetails(id);
     });
     // Third element is the edit button. Clicking it will bring up the change dialogue.
+    buttonsList[2].addEventListener("click", ()=> {
+      editItems(id);
+    });
 
     // Final element is the delete button.Clicking it will remove the element.
     buttonsList[3].addEventListener("click", ()=> {
@@ -135,8 +139,16 @@ function addItem(proj){
     const newLi = ul.lastChild;
     const newLiButtons = newLi.querySelectorAll("button");
 
+    newLiButtons[0].addEventListener("click", ()=> {
+      changeDone(newItem.getID());
+    });
+
     newLiButtons[1].addEventListener("click", ()=>{
       popItemDetails(newItem.getID());
+    });
+
+    newLiButtons[2].addEventListener("click", ()=> {
+      editItems(newItem.getID());
     });
 
     newLiButtons[3].addEventListener("click", ()=> {
@@ -176,11 +188,57 @@ function popItemDetails(id){
 
 function changeDone(id){
   const item = master.findItemFromID(id);
-  console.log(item);
   item.flipDone();
   save();
   // TODO remove bellow later
   console.log(`${item.getTitle()} state is ${item.isDone()}`)
+}
+
+function editItems(id){
+  const item = master.findItemFromID(id);
+  const editItemModal = editItem(master.getProjectsList(),item);
+  body.appendChild(editItemModal);
+  editItemModal.showModal();
+
+  editItemModal.querySelector(".edit-modal-cancel").addEventListener("click", (e)=> {
+    e.preventDefault();
+    editItemModal.close();
+    body.removeChild(editItemModal);
+  });
+
+  editItemModal.querySelector(".edit-modal-add").addEventListener("click", (e)=>{
+    e.preventDefault();
+    const result = {
+      title: document.getElementById("edit-title").value,
+      date: document.getElementById("edit-due").value,
+      description: document.getElementById("edit-description").value,
+      priority: document.getElementById("edit-priority").value,
+    }
+    if(result.title === ""){
+      formErrorModal.showModal();
+      return;
+    }
+    if(result.date === "" || result.date === "Never"){
+      result.date = "Never";
+    }
+
+    item.setTitle(result.title);
+    item.setDueDate(result.date);
+    item.setDescription(result.description);
+    item.setPriority(result.priority);
+
+    const target = document.querySelector(`[data-id = '${id}']`);
+    const buttonsList = target.querySelectorAll("button");
+
+    buttonsList[0].innerText = item.getTitle();
+
+    target.querySelector("span").innerText = item.getDueDate();
+    console.log(item.getDueDate());
+
+    save();
+    editItemModal.close();
+    body.removeChild(editItemModal);
+  });
 }
 
 function save(){
