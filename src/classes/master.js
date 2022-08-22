@@ -7,7 +7,7 @@ export default class MasterProject{
   #projectsList;
   #description;
 
-  constructor(itemsList,projectsList){
+  constructor(itemsList = [],projectsList = []){
     this.#title = "Home";
     this.#description = "Description"; //TODO: Add proper description text here;
     this.#itemsList = itemsList || [];
@@ -105,6 +105,9 @@ export default class MasterProject{
   }
 
   parseFromJSON(jsonString){
+    if(jsonString === undefined){
+      return;
+    }
     const jsonObject = JSON.parse(jsonString); // parse the JSON string to an object
 
     for(let i = 0; i < jsonObject.itemsList.length; i++){
