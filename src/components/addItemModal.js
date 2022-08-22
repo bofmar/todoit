@@ -40,7 +40,7 @@ export default function addItemModal(projects){
   areaField.setAttribute("id", "item-description");
   areaField.setAttribute("name", "description");
   areaField.setAttribute("placeholder", "No description...");
-  // TODO set max size, max characters, no transformation
+  // TODO set max size, max characters with css
   areaDiv.appendChild(areaField);
   form.appendChild(areaDiv);
 

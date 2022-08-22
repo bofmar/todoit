@@ -119,6 +119,7 @@ const body = document.querySelector("body");
 body.appendChild(sidebar(master.getProjectsList()));
 const addItemModalDOM = addItemModal(master.getProjectsList());
 body.appendChild(addItemModalDOM);
+const addItemForm = addItemModalDOM.querySelector("form");
 const formErrorModal = formError();
 body.appendChild(formErrorModal);
 
@@ -144,11 +145,13 @@ body.appendChild(formErrorModal);
       result.date = "Never";
     }
     addItem(result);
+    addItemForm.reset();
     addItemModalDOM.close();
   }); // hook the add button in the add item dialogue modal
 
   document.querySelector(".item-modal-cancel").addEventListener("click", (e)=> {
     e.preventDefault();
+    addItemForm.reset();
     addItemModalDOM.close();
   }); // hook the cancel button in the add item dialogue modal
 
@@ -203,11 +206,5 @@ function addItem(proj){
   createProjectLi(ul, [newItem]);
 }
 
+// date tests
 test();
-
-/*
-  TODO
-  *. Work on the date picker, according to todo in addItemModal.js
-  *. Make the modal for the individual projects (should not allow to pick a different project than the one selected).
-  *. Make the forms reset the fields after submission or cancelation
-*/
