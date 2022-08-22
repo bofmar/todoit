@@ -8,8 +8,8 @@ export default class MasterProject{
   #description;
 
   constructor(itemsList = [],projectsList = []){
-    this.#title = "Home";
-    this.#description = "Description"; //TODO: Add proper description text here;
+    this.#title = "All Projects";
+    this.#description = "This is your main project in todoIt. All tasks you create can be viewed here.";
     this.#itemsList = itemsList || [];
     this.#projectsList = projectsList || [];
   }

@@ -4,7 +4,12 @@ export default function projectPanel(projects){
   const content = createWithClass("div","project-wrapper");
   const itemsList = projects.getItemsList();
 
-  createAndAppendText("h2",content,projects.getTitle());
+  const div = createWithClass("div", "title-div", "");
+
+  createAndAppendText("h2",div,projects.getTitle());
+  const info = createWithClass("button","project-info","?");
+  div.appendChild(info);
+  content.appendChild(div);
 
   const ul = createWithClass("ul","items-list");
   createProjectLi(ul,itemsList);

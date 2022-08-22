@@ -14,6 +14,7 @@ import editItem from "./components/editItem.js";
 import addProject from "./components/addProject.js";
 import editProject from "./components/editProject.js";
 import deleteWarning from "./components/deleteWarning.js";
+import projectDetails from "./components/projectDetails.js";
 // APIs
 import { createProjectLi, createNavProjectLi } from "./helpers.js";
 import test from "./time.js";
@@ -178,6 +179,30 @@ function hookButtons(){
       deleteItem(id);
     });
   }); // hook the buttons in the items list
+
+  document.querySelector(".project-info").addEventListener("click", ()=> {
+    if(currentPage === "All Projects"){
+      const detailsModal = projectDetails(master);
+      body.appendChild(detailsModal);
+      detailsModal.showModal();
+
+      detailsModal.querySelector("button").addEventListener("click", ()=> {
+        detailsModal.close();
+        body.removeChild(detailsModal);
+      });
+    }
+    else{
+      const proj = master.findProjectFromID(currentPage);
+      const detailsModal = projectDetails(proj);
+      body.appendChild(detailsModal);
+      detailsModal.showModal();
+
+      detailsModal.querySelector("button").addEventListener("click", ()=> {
+        detailsModal.close();
+        body.removeChild(detailsModal);
+      });
+    }
+  });
 }
 
 function addItem(proj){
