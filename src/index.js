@@ -139,6 +139,9 @@ body.appendChild(formErrorModal);
       formErrorModal.showModal();
       return;
     }
+    if(result.date === ""){
+      result.date = "Never";
+    }
     addItem(result);
     addItemModalDOM.close();
   }); // hook the add button in the add item dialogue modal
