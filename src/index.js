@@ -9,6 +9,7 @@ import today from "./components/today.js";
 import upcoming from "./components/upcoming.js";
 import addItemModal from "./components/addItemModal.js";
 import formError from "./components/formError.js";
+import itemDetails from "./components/itemDetails.js";
 // APIs
 import { createProjectLi } from "./helpers.js";
 import test from "./time.js";
@@ -111,6 +112,9 @@ function hookButtons(){
 
     // First element is the project name. Clicking it will toggle done state.
     // Second element is the details. Clicking it will bring up a modal that states the description.
+    buttonsList[1].addEventListener("click", ()=>{
+      popItemDetails(id);
+    });
     // Third element is the edit button. Clicking it will bring up the change dialogue.
 
     // Final element is the delete button.Clicking it will remove the element.
@@ -127,6 +131,11 @@ function addItem(proj){
     createProjectLi(ul, [newItem]);
     const newLi = ul.lastChild;
     const newLiButtons = newLi.querySelectorAll("button");
+
+    newLiButtons[1].addEventListener("click", ()=>{
+      popItemDetails(newItem.getID());
+    });
+
     newLiButtons[3].addEventListener("click", ()=> {
       deleteItem(newItem.getID());
     });
@@ -150,6 +159,16 @@ function deleteItem(id){
   });
 
   save();
+}
+
+function popItemDetails(id){
+  const itemDetailsModal = itemDetails(master.findItemFromID(id));
+  body.appendChild(itemDetailsModal);
+  itemDetailsModal.showModal();
+  itemDetailsModal.querySelector("button").addEventListener("click", ()=> {
+    itemDetailsModal.close();
+    body.removeChild(itemDetailsModal);
+  });
 }
 
 function save(){
