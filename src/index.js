@@ -11,17 +11,25 @@ import addItemModal from "./components/addItemModal.js";
 import formError from "./components/formError.js";
 import itemDetails from "./components/itemDetails.js";
 import editItem from "./components/editItem.js";
+import addProject from "./components/addProject.js";
 // APIs
-import { createProjectLi } from "./helpers.js";
+import { createProjectLi, createNavProjectLi } from "./helpers.js";
 import test from "./time.js";
 
 const body = document.querySelector("body");
 const master = new MasterProject();
 master.parseFromJSON(localStorage.master);
+
 body.appendChild(sidebar(master.getProjectsList()));
+
 const addItemModalDOM = addItemModal(master.getProjectsList());
 body.appendChild(addItemModalDOM);
 const addItemForm = addItemModalDOM.querySelector("form");
+
+const addProjectModal = addProject();
+body.appendChild(addProjectModal);
+const addProjectForm = addProjectModal.querySelector("form");
+
 const formErrorModal = formError();
 body.appendChild(formErrorModal);
 
@@ -68,6 +76,33 @@ let currentPage = "All Projects";
   navButtons.forEach(button => button.addEventListener("click", ()=> {
     swapPage(button);
   }));
+
+  document.querySelector(".add-project-button").addEventListener("click", ()=> {
+    addProjectModal.showModal();
+  }); // pop the add project dialogue
+
+  document.querySelector(".project-modal-cancel").addEventListener("click", (e)=> {
+    e.preventDefault();
+    addProjectForm.reset();
+    addProjectModal.close();
+  }); // hook the cancel button in the add project dialogue modal
+
+  document.querySelector(".project-modal-add").addEventListener("click", (e)=> {
+    e.preventDefault();
+    const result = {
+      title: document.getElementById("project-title").value,
+      description: document.getElementById("project-description").value,
+    }
+
+    if(result.title === ""){
+      formErrorModal.showModal();
+      return;
+    }
+
+    addProj(result);
+    addProjectForm.reset();
+    addProjectModal.close();
+  }); // hook the add button in the add project dialogue modal
 })();
 
 function swapPage(button){
@@ -190,8 +225,6 @@ function changeDone(id){
   const item = master.findItemFromID(id);
   item.flipDone();
   save();
-  // TODO remove bellow later
-  console.log(`${item.getTitle()} state is ${item.isDone()}`)
 }
 
 function editItems(id){
@@ -239,6 +272,25 @@ function editItems(id){
     editItemModal.close();
     body.removeChild(editItemModal);
   });
+}
+
+function addProj(result){
+  const newProject = master.createProject(result.title, [], result.description);
+
+  const navbar = document.querySelector("nav");
+  const ul = navbar.querySelector("ul");
+
+  createNavProjectLi(ul, [newProject]);
+
+  const newLi = ul.lastChild;
+  const newButtons = newLi.querySelectorAll("button");
+
+  newButtons[0].addEventListener("click", ()=> {
+    swapPage(newButtons[0]);
+  });
+
+  save();
+  location.reload();
 }
 
 function save(){

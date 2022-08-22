@@ -71,6 +71,8 @@ export default class MasterProject{
   createProject(title,itemsList,description){
     const newPro = new Project(title,itemsList,description);
     this.addProject(newPro);
+
+    return newPro;
   }
   projectsLength(){
     return this.getProjectsList().length;

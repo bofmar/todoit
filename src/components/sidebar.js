@@ -15,6 +15,11 @@ export default function sidebar(projects){
 
   createNavProjectLi(unorderedList,projects);
 
+  const addButton = document.createElement("button");
+  addButton.classList.add("add-project-button");
+  addButton.innerText = "New project";
+
+  content.appendChild(addButton);
 
   return content;
 }
