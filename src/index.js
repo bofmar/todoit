@@ -12,6 +12,7 @@ import formError from "./components/formError.js";
 import itemDetails from "./components/itemDetails.js";
 import editItem from "./components/editItem.js";
 import addProject from "./components/addProject.js";
+import editProject from "./components/editProject.js";
 // APIs
 import { createProjectLi, createNavProjectLi } from "./helpers.js";
 import test from "./time.js";
@@ -103,6 +104,16 @@ let currentPage = "All Projects";
     addProjectForm.reset();
     addProjectModal.close();
   }); // hook the add button in the add project dialogue modal
+
+  const projList = document.querySelectorAll(".proj-li");
+  projList.forEach(li => {
+    const buttons = li.querySelectorAll("button");
+    const id = li.getAttribute("data-id");
+
+    buttons[1].addEventListener("click", ()=> {
+      editPro(id);
+    });
+  });
 })();
 
 function swapPage(button){
@@ -128,8 +139,6 @@ function swapPage(button){
         break;
     }
   } // one of the default pages was selected
-
-  console.log(currentPage);
   hookButtons();
 }
 
@@ -291,6 +300,46 @@ function addProj(result){
 
   save();
   location.reload();
+}
+
+function editPro(id){
+  const project = master.findProjectFromID(id);
+  const editModal = editProject(project);
+  body.appendChild(editModal);
+  editModal.showModal();
+
+  editModal.querySelector(".edit-modal-cancel").addEventListener("click", (e)=> {
+    e.preventDefault();
+    editModal.close();
+    body.removeChild(editModal);
+  });
+
+  editModal.querySelector(".edit-modal-add").addEventListener("click", (e)=> {
+    e.preventDefault();
+    const result = {
+      title: document.getElementById("edit-title").value,
+      description: document.getElementById("edit-description").value,
+    }
+    if(result.title === ""){
+      formErrorModal.showModal();
+      return;
+    }
+
+    project.setTitle(result.title);
+    project.setDescription(result.description);
+
+    const target = document.querySelector(`[data-id = '${id}']`);
+    target.firstChild.innerText = project.getTitle();
+
+    save();
+    editModal.close();
+    body.removeChild(editModal);
+
+    if(currentPage === project.getID()){
+      const div = document.querySelector(".project-wrapper");
+      div.querySelector("h2").innerText = project.getTitle();
+    }
+  });
 }
 
 function save(){

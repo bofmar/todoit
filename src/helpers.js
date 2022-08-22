@@ -28,10 +28,16 @@ export function createNavProjectLi(target, projects){
 
   for(let i = 0; i < projNames.length; i++){
     const newLi = document.createElement("li");
+    newLi.classList.add("proj-li");
+    newLi.setAttribute("data-id", projects[i].getID());
     const navButton = createWithClass("button", "nav-button", projNames[i]); // use the projNames Array to generate the buttons with the correct text.
     navButton.setAttribute("id", projects[i].getID()); // add the project's id to the co-responding button, so it can be referenced by it.
+    const editButton = createWithClass("button","edit-nav","Edit");
+    const deleteButton = createWithClass("button","delete-nav", "Delete");
 
     newLi.appendChild(navButton);
+    newLi.appendChild(editButton);
+    newLi.appendChild(deleteButton);
     target.appendChild(newLi);
   }
 }
