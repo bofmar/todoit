@@ -17,6 +17,7 @@ export default function addItemModal(projects){
   titleDiv.appendChild(titleLabel);
   const titleField = document.createElement("input");
   setFieldAttributes(titleField,"text","item-title","title");
+  titleField.required = true;
   titleDiv.appendChild(titleField);
   form.appendChild(titleDiv);
 
