@@ -123,6 +123,8 @@ const addItemForm = addItemModalDOM.querySelector("form");
 const formErrorModal = formError();
 body.appendChild(formErrorModal);
 
+let currentPage = "All Projects";
+
 (function initialize(){
   body.appendChild(projectPanel(master));
 
@@ -171,12 +173,14 @@ function swapPage(button){
 
   if(button.hasAttribute("id")){ // we are dealing with a project
     const project = master.findProjectFromID(button.getAttribute("id"));
+    currentPage = button.getAttribute("id");
     body.appendChild(projectPanel(project));
   }
   else{
     const name = button.innerText;
     switch(name) {
       case "All Projects" :
+        currentPage = button.innerText;
         body.appendChild(projectPanel(master));
         break;
       case "Today" :
@@ -188,6 +192,7 @@ function swapPage(button){
     }
   } // one of the default pages was selected
 
+  console.log(currentPage);
   hookButtons();
 }
 
@@ -217,14 +222,15 @@ function hookButtons(){
 
 function addItem(proj){
   const newItem = master.createItem(proj.title, proj.date, proj.description, proj.priority, null, proj.project === "none" ? null : proj.project);
-  const ul = document.querySelector(".items-list");
-
-  createProjectLi(ul, [newItem]);
-  const newLi = ul.lastChild;
-  const newLiButtons = newLi.querySelectorAll("button");
-  newLiButtons[3].addEventListener("click", ()=> {
-    deleteItem(newItem.getID());
-  });
+  if(currentPage === "All Projects" || currentPage === proj.project){
+    const ul = document.querySelector(".items-list");
+    createProjectLi(ul, [newItem]);
+    const newLi = ul.lastChild;
+    const newLiButtons = newLi.querySelectorAll("button");
+    newLiButtons[3].addEventListener("click", ()=> {
+      deleteItem(newItem.getID());
+    });
+  } // add the item on the page only if the current page is the ALl projects page, or the correct project page
 }
 
 function deleteItem(id){
