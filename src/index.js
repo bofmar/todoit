@@ -11,6 +11,7 @@ import addItemModal from "./components/addItemModal.js";
 import formError from "./components/formError.js";
 // APIs
 import { createProjectLi } from "./helpers.js";
+import test from "./time.js";
 
 const testItem = new toDoItem("Make cake","1/1/22","Making cakes is awesome", "Low", false);
 
@@ -202,9 +203,10 @@ function addItem(proj){
   createProjectLi(ul, [newItem]);
 }
 
+test();
+
 /*
   TODO
-  *. Add mandatory fields to the modals
   *. Work on the date picker, according to todo in addItemModal.js
   *. Make the modal for the individual projects (should not allow to pick a different project than the one selected).
   *. Make the forms reset the fields after submission or cancelation

@@ -1,4 +1,5 @@
 import { createAndAppendText, createLabel, setFieldAttributes, createWithClass, createOption } from "../helpers";
+import { getToday } from "../time";
 
 export default function addItemModal(projects){
   const projNames = [...projects].map(proj => {
@@ -27,7 +28,7 @@ export default function addItemModal(projects){
   dueDiv.appendChild(dueDateLabel);
   const dueDateField = document.createElement("input");
   setFieldAttributes(dueDateField,"date","item-due","due-date");
-  // TODO: set initial value to be today, minimum value to be today
+  dueDateField.setAttribute("min", getToday());
   dueDiv.appendChild(dueDateField);
   form.appendChild(dueDiv);
 
