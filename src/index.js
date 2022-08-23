@@ -6,7 +6,7 @@ import MasterProject from "./classes/master.js";
 import sidebar from "./components/sidebar.js";
 import projectPanel from "./components/projectsPanel.js";
 import todayPage from "./components/todayPage.js";
-import upcoming from "./components/upcoming.js";
+import upcomingPage from "./components/upcomingPage.js";
 import addItemModal from "./components/addItemModal.js";
 import formError from "./components/formError.js";
 import itemDetails from "./components/itemDetails.js";
@@ -17,7 +17,7 @@ import deleteWarning from "./components/deleteWarning.js";
 import projectDetails from "./components/projectDetails.js";
 // APIs
 import { createProjectLi, createNavProjectLi } from "./helpers.js";
-import { getToday } from "./time.js";
+import { getToday, filterWithinWeek } from "./time.js";
 
 const body = document.querySelector("body");
 const master = new MasterProject();
@@ -138,11 +138,14 @@ function swapPage(button){
         body.appendChild(projectPanel(master));
         break;
       case "Today" :
+        currentPage = button.innerText;
         const arr = findToday();
         body.appendChild(todayPage(arr));
         break;
       case "Upcoming" :
-        body.appendChild(upcoming(master));
+        currentPage = button.innerText;
+        const arr2 = filterWithinWeek(master.getItemsList());
+        body.appendChild(upcomingPage(arr2));
         break;
     }
   } // one of the default pages was selected
