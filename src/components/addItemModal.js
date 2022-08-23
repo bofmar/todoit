@@ -1,7 +1,7 @@
 import { createAndAppendText, createLabel, setFieldAttributes, createWithClass, createOption } from "../helpers";
 import { getToday } from "../time";
 
-export default function addItemModal(projects){
+export default function addItemModal(projects,currentPage){
   const projNames = [...projects].map(proj => {
     return proj.getTitle();
   });
@@ -72,6 +72,10 @@ export default function addItemModal(projects){
   for(let i = 0; i < projNames.length; i++){
     const nextOption = createOption(projNames[i].toLowerCase(), false);
     nextOption.setAttribute("value",projects[i].getID());
+    if(nextOption.value === currentPage){
+      defaultProj.selected = false;
+      nextOption.selected = true;
+    }
     projField.appendChild(nextOption);
   }
   projDiv.appendChild(projField);

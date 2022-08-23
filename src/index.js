@@ -25,10 +25,6 @@ master.parseFromJSON(localStorage.master);
 
 body.appendChild(sidebar(master.getProjectsList()));
 
-const addItemModalDOM = addItemModal(master.getProjectsList());
-body.appendChild(addItemModalDOM);
-const addItemForm = addItemModalDOM.querySelector("form");
-
 const addProjectModal = addProject();
 body.appendChild(addProjectModal);
 const addProjectForm = addProjectModal.querySelector("form");
@@ -42,33 +38,6 @@ let currentPage = "All Projects";
   body.appendChild(projectPanel(master));
 
   hookButtons();
-
-  document.querySelector(".item-modal-add").addEventListener("click", (e)=> {
-    e.preventDefault();
-    const result = {
-      title: document.getElementById("item-title").value,
-      date: document.getElementById("item-due").value,
-      description: document.getElementById("item-description").value,
-      priority: document.getElementById("item-priority").value,
-      project: document.getElementById("item-project").value
-    }
-    if(result.title === ""){
-      formErrorModal.showModal();
-      return;
-    }
-    if(result.date === ""){
-      result.date = "Never";
-    }
-    addItem(result);
-    addItemForm.reset();
-    addItemModalDOM.close();
-  }); // hook the add button in the add item dialogue modal
-
-  document.querySelector(".item-modal-cancel").addEventListener("click", (e)=> {
-    e.preventDefault();
-    addItemForm.reset();
-    addItemModalDOM.close();
-  }); // hook the cancel button in the add item dialogue modal
 
   formErrorModal.querySelector("button").addEventListener("click", (e)=>{
     e.preventDefault();
@@ -159,7 +128,39 @@ function hookButtons(){
 
   if(currentPage !== "Today" && currentPage !== "Upcoming"){
     document.querySelector(".add-item-button").addEventListener("click", ()=> {
+      const addItemModalDOM = addItemModal(master.getProjectsList(),currentPage);
+      body.appendChild(addItemModalDOM);
+      const addItemForm = addItemModalDOM.querySelector("form");
       addItemModalDOM.showModal();
+
+      document.querySelector(".item-modal-add").addEventListener("click", (e)=> {
+        e.preventDefault();
+        const result = {
+          title: document.getElementById("item-title").value,
+          date: document.getElementById("item-due").value,
+          description: document.getElementById("item-description").value,
+          priority: document.getElementById("item-priority").value,
+          project: document.getElementById("item-project").value
+        }
+        if(result.title === ""){
+          formErrorModal.showModal();
+          return;
+        }
+        if(result.date === ""){
+          result.date = "Never";
+        }
+        addItem(result);
+        addItemForm.reset();
+        addItemModalDOM.close();
+        body.removeChild(addItemModalDOM);
+      }); // hook the add button in the add item dialogue modal
+    
+      document.querySelector(".item-modal-cancel").addEventListener("click", (e)=> {
+        e.preventDefault();
+        addItemForm.reset();
+        addItemModalDOM.close();
+        body.removeChild(addItemModalDOM);
+      }); // hook the cancel button in the add item dialogue modal
     }); // the new add item button is hooked
   }
 
