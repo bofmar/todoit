@@ -5,7 +5,7 @@ import MasterProject from "./classes/master.js";
 // PAGES
 import sidebar from "./components/sidebar.js";
 import projectPanel from "./components/projectsPanel.js";
-import today from "./components/today.js";
+import todayPage from "./components/todayPage.js";
 import upcoming from "./components/upcoming.js";
 import addItemModal from "./components/addItemModal.js";
 import formError from "./components/formError.js";
@@ -17,7 +17,7 @@ import deleteWarning from "./components/deleteWarning.js";
 import projectDetails from "./components/projectDetails.js";
 // APIs
 import { createProjectLi, createNavProjectLi } from "./helpers.js";
-import test from "./time.js";
+import { getToday } from "./time.js";
 
 const body = document.querySelector("body");
 const master = new MasterProject();
@@ -138,7 +138,8 @@ function swapPage(button){
         body.appendChild(projectPanel(master));
         break;
       case "Today" :
-        body.appendChild(today(master));
+        const arr = findToday();
+        body.appendChild(todayPage(arr));
         break;
       case "Upcoming" :
         body.appendChild(upcoming(master));
@@ -395,9 +396,17 @@ function deletePro(id){
   });
 }
 
+function findToday(){
+  const today = getToday();
+  const allItems = master.getItemsList();
+
+  const todayItems = allItems.filter(item => {
+    return item.getDueDate() === today;
+  });
+
+  return todayItems;
+}
+
 function save(){
   localStorage.setItem("master", JSON.stringify(master));
 }
-
-// date tests
-test();
