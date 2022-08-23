@@ -316,7 +316,6 @@ function editItems(id){
     buttonsList[0].innerText = item.getTitle();
 
     target.querySelector("span").innerText = item.getDueDate();
-    console.log(item.getDueDate());
 
     save();
     editItemModal.close();
