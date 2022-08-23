@@ -141,11 +141,13 @@ function swapPage(button){
         currentPage = button.innerText;
         const arr = findToday();
         body.appendChild(todayPage(arr));
+        hookButtons();
         break;
       case "Upcoming" :
         currentPage = button.innerText;
         const arr2 = filterWithinWeek(master.getItemsList());
         body.appendChild(upcomingPage(arr2));
+        hookButtons();
         break;
     }
   } // one of the default pages was selected
@@ -155,9 +157,11 @@ function swapPage(button){
 function hookButtons(){
   // on initial page load and after we switch pages, some buttons need to always be hooked with event listeners
 
-  document.querySelector(".add-item-button").addEventListener("click", ()=> {
-    addItemModalDOM.showModal();
-  }); // the new add item button is hooked
+  if(currentPage !== "Today" && currentPage !== "Upcoming"){
+    document.querySelector(".add-item-button").addEventListener("click", ()=> {
+      addItemModalDOM.showModal();
+    }); // the new add item button is hooked
+  }
 
   const projWrap = document.querySelector(".project-wrapper");
   const liItems = projWrap.querySelectorAll("li");
@@ -184,29 +188,32 @@ function hookButtons(){
     });
   }); // hook the buttons in the items list
 
-  document.querySelector(".project-info").addEventListener("click", ()=> {
-    if(currentPage === "All Projects"){
-      const detailsModal = projectDetails(master);
-      body.appendChild(detailsModal);
-      detailsModal.showModal();
+  if(currentPage !== "Today" && currentPage !== "Upcoming"){
+    document.querySelector(".project-info").addEventListener("click", ()=> {
+      if(currentPage === "All Projects"){
+        const detailsModal = projectDetails(master);
+        body.appendChild(detailsModal);
+        detailsModal.showModal();
+  
+        detailsModal.querySelector("button").addEventListener("click", ()=> {
+          detailsModal.close();
+          body.removeChild(detailsModal);
+        });
+      }
+      else{
+        const proj = master.findProjectFromID(currentPage);
+        const detailsModal = projectDetails(proj);
+        body.appendChild(detailsModal);
+        detailsModal.showModal();
+  
+        detailsModal.querySelector("button").addEventListener("click", ()=> {
+          detailsModal.close();
+          body.removeChild(detailsModal);
+        });
+      }
+    });
+  }
 
-      detailsModal.querySelector("button").addEventListener("click", ()=> {
-        detailsModal.close();
-        body.removeChild(detailsModal);
-      });
-    }
-    else{
-      const proj = master.findProjectFromID(currentPage);
-      const detailsModal = projectDetails(proj);
-      body.appendChild(detailsModal);
-      detailsModal.showModal();
-
-      detailsModal.querySelector("button").addEventListener("click", ()=> {
-        detailsModal.close();
-        body.removeChild(detailsModal);
-      });
-    }
-  });
 }
 
 function addItem(proj){
