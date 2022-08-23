@@ -30,6 +30,5 @@ export function filterWithinWeek(items){
       return true;
     }
   });
-  console.table(result);
   return result;
 }
