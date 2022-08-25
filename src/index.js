@@ -20,6 +20,8 @@ import footerComp from "./components/footer.js";
 import { createProjectLi, createNavProjectLi } from "./helpers.js";
 import { getToday, filterWithinWeek, compare } from "./time.js";
 
+import "./styles/sass/index.scss";
+
 const body = document.querySelector("body");
 const master = new MasterProject();
 master.parseFromJSON(localStorage.master);
