@@ -15,6 +15,7 @@ import addProject from "./components/addProject.js";
 import editProject from "./components/editProject.js";
 import deleteWarning from "./components/deleteWarning.js";
 import projectDetails from "./components/projectDetails.js";
+import footerComp from "./components/footer.js";
 // APIs
 import { createProjectLi, createNavProjectLi } from "./helpers.js";
 import { getToday, filterWithinWeek, compare } from "./time.js";
@@ -31,6 +32,9 @@ const addProjectForm = addProjectModal.querySelector("form");
 
 const formErrorModal = formError();
 body.appendChild(formErrorModal);
+
+const footer = footerComp();
+body.appendChild(footer);
 
 let currentPage = "All Projects";
 
