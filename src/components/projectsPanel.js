@@ -11,6 +11,20 @@ export default function projectPanel(projects){
   div.appendChild(info);
   content.appendChild(div);
 
+  //create the field titles
+  const divFields = createWithClass("div", "fields");
+  content.appendChild(divFields);
+  const titleDiv = createWithClass("div", "title-and-sort");
+  divFields.appendChild(titleDiv);
+  createAndAppendText("span",titleDiv,"Name");
+  const sortName = createWithClass("button","sort-by-name","Sort");
+  sortName.setAttribute("data-direction","up"); // sorting goes up by default;
+  titleDiv.appendChild(sortName);
+  createAndAppendText("span",titleDiv,"Due date");
+  const sortDate = createWithClass("button","sort-by-date","Sort");
+  sortName.setAttribute("data-direction","up"); // sorting goes up by default;
+  titleDiv.appendChild(sortDate);  
+
   const ul = createWithClass("ul","items-list");
   createProjectLi(ul,itemsList);
   content.appendChild(ul);
