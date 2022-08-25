@@ -1,3 +1,14 @@
-body{
+@import "./components/reset";
+@import "./components/pageLayout";
+
+nav{
+  background-color: red;
+}
+
+footer{
+  background-color: green;
+}
+
+.project-wrapper{
   background-color: blue;
 }
