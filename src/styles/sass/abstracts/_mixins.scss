@@ -1,0 +1,26 @@
+@mixin button-with-icon($color){
+  width: 25px;
+  height: 50px;
+
+  img{
+    filter: pick-color($color);
+  }
+
+  &::after{
+    width: 0px;
+  }
+
+  &:hover{
+    transform: scale(1.3);
+    transition: all 200ms ease-in;
+  }
+}
+
+@function pick-color($color){
+  @if($color == "red"){
+    @return invert(27%) sepia(72%) saturate(1563%) hue-rotate(332deg) brightness(86%) contrast(88%);
+  }
+  @else{
+    @return invert(96%) sepia(16%) saturate(215%) hue-rotate(172deg) brightness(98%) contrast(93%);
+  }
+}

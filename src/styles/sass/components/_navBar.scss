@@ -1,5 +1,6 @@
 @use "../abstracts/colors" as c;
 @use "../abstracts/fonts" as f;
+@use "../abstracts/mixins" as m;
 
 nav{
   background-color: c.$primary;
@@ -47,33 +48,48 @@ nav{
   button{
     all: initial;
     grid-column: 2/span 3;
+    position: relative;
 
     font-size: f.$big-text;
     color: c.$tertiary;
     transition: all 200ms ease-in;
 
+    &::after{
+      content: "";
+      width: 100%;
+      height: 3px;
+      position: absolute;
+      background-color: c.$secondary;
+      bottom: -3px;
+      left: 0;
+      transform: scaleX(0);
+      transform-origin: left;
+    
+      transition: transform 200ms ease-out;
+    }
+
     &:hover{
       transform: scale(1.1);
-      color: c.$secondary;
       transition: all 200ms ease-in;
+      &::after{
+        transform: scale(1);
+        transition: transform 200ms ease-out;
+      }
     }
   }
 
   .delete-nav{
-    width: 25px;
-    height: 50px;
-
-    img{
-      filter: invert(27%) sepia(72%) saturate(1563%) hue-rotate(332deg) brightness(86%) contrast(88%);
-    }
+    @include m.button-with-icon("red");
   }
 
   .edit-nav{
-    width: 25px;
-    height: 50px;
-
-    img{
-      filter: invert(96%) sepia(16%) saturate(215%) hue-rotate(172deg) brightness(98%) contrast(93%);
-    }
+    @include m.button-with-icon("white");
   }
 }
+
+/*
+  TODO in navbar
+  - Style the Projects text
+  - Add section splitters
+  - Add a more pleasant font (different for the logo?)
+*/
