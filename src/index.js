@@ -17,7 +17,7 @@ import deleteWarning from "./components/deleteWarning.js";
 import projectDetails from "./components/projectDetails.js";
 // APIs
 import { createProjectLi, createNavProjectLi } from "./helpers.js";
-import { getToday, filterWithinWeek } from "./time.js";
+import { getToday, filterWithinWeek, compare } from "./time.js";
 
 const body = document.querySelector("body");
 const master = new MasterProject();
@@ -165,6 +165,9 @@ function hookButtons(){
 
     document.querySelector(".sort-by-name").addEventListener("click", (e)=>{
       sortByName(e);
+    }); // hook the sort by name button
+    document.querySelector(".sort-by-date").addEventListener("click", (e)=> {
+      sortByDate(e);
     });
   }
 
@@ -450,17 +453,53 @@ function sortByName(e){
   const title = document.querySelector(".title-div").querySelector("h2").innerText;
   body.removeChild(body.lastChild);
   body.appendChild(projectPanel(sortedItems,title));
-  hookButtons();
-
+  
   if(direction === "up"){
     document.querySelector(".sort-by-name").setAttribute("data-direction","down");
   }
   else{
     document.querySelector(".sort-by-name").setAttribute("data-direction","up");
   }
+  hookButtons();
 }
 
+function sortByDate(e){
+  const direction = e.target.getAttribute("data-direction");
+  let sortedItems = [];
+  if(currentPage === "All Projects"){
+    sortedItems = master.getItemsList().sort( (a,b) => {
+      if(direction === "up"){
+        return compare(b,a);
+      }
+      else{
+        return compare(a,b);
+      }
+    });
+  }
+  else{
+    const project = master.findProjectFromID(currentPage);
+    sortedItems = project.getItemsList().sort( (a,b) => {
+      if(direction === "up"){
+        return compare(b,a);
+      }
+      else{
+        return compare(a,b);
+      }
+    });
+  }
 
+  const title = document.querySelector(".title-div").querySelector("h2").innerText;
+  body.removeChild(body.lastChild);
+  body.appendChild(projectPanel(sortedItems,title));
+  
+  if(direction === "up"){
+    document.querySelector(".sort-by-date").setAttribute("data-direction","down");
+  }
+  else{
+    document.querySelector(".sort-by-date").setAttribute("data-direction","up");
+  }
+  hookButtons();
+}
 
 function save(){
   localStorage.setItem("master", JSON.stringify(master));

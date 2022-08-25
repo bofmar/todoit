@@ -24,10 +24,13 @@ export default function projectPanel(projects,title = ""){
   const sortName = createWithClass("button","sort-by-name","Sort");
   sortName.setAttribute("data-direction","up"); // sorting goes up by default;
   titleDiv.appendChild(sortName);
-  createAndAppendText("span",titleDiv,"Due date");
+  
+  const dateDiv = createWithClass("div", "date-and-sort");
+  divFields.appendChild(dateDiv);
+  createAndAppendText("span",dateDiv,"Due date");
   const sortDate = createWithClass("button","sort-by-date","Sort");
-  sortName.setAttribute("data-direction","up"); // sorting goes up by default;
-  titleDiv.appendChild(sortDate);  
+  sortDate.setAttribute("data-direction","up"); // sorting goes up by default;
+  dateDiv.appendChild(sortDate);
 
   const ul = createWithClass("ul","items-list");
   createProjectLi(ul,itemsList);

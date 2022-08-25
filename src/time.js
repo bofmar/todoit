@@ -1,6 +1,7 @@
 import format from "date-fns/format";
 import compareDesc from "date-fns/compareDesc";
 import parseISO from "date-fns/parseISO";
+import { compareAsc } from "date-fns";
 
 export function test(){
   getOneWeek();
@@ -31,4 +32,15 @@ export function filterWithinWeek(items){
     }
   });
   return result;
+}
+
+export function compare(a,b){
+  if(a.getDueDate() === "Never"){
+    return -1;
+  }
+  if(b.getDueDate() === "Never"){
+    return 1;
+  }
+
+  return compareDesc(parseISO(a.getDueDate()),parseISO(b.getDueDate()));
 }
