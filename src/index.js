@@ -162,6 +162,10 @@ function hookButtons(){
         body.removeChild(addItemModalDOM);
       }); // hook the cancel button in the add item dialogue modal
     }); // the new add item button is hooked
+
+    document.querySelector(".sort-by-name").addEventListener("click", (e)=>{
+      sortByName(e);
+    });
   }
 
   const projWrap = document.querySelector(".project-wrapper");
@@ -416,6 +420,49 @@ function findToday(){
 
   return todayItems;
 }
+
+function sortByName(e){
+  const direction = e.target.getAttribute("data-direction");
+
+  if(currentPage === "All Projects"){
+    const sortedItems = master.getItemsList().sort( (a,b) => {
+      if(direction === "up"){
+        return (a.getTitle() > b.getTitle()) ? 1 : -1;
+      }
+      else{
+        return (a.getTitle() > b.getTitle()) ? -1 : 1;
+      }
+    });
+    const title = document.querySelector(".title-div").querySelector("h2").innerText;
+    body.removeChild(body.lastChild);
+    body.appendChild(projectPanel(sortedItems,title));
+    hookButtons();
+  }
+  else{
+    const project = master.findProjectFromID(currentPage);
+    const sortedItems = project.getItemsList().sort( (a,b) => {
+      if(direction === "up"){
+        return (a.getTitle() > b.getTitle()) ? 1 : -1;
+      }
+      else{
+        return (a.getTitle() > b.getTitle()) ? -1 : 1;
+      }
+    });
+    const title = document.querySelector(".title-div").querySelector("h2").innerText;
+    body.removeChild(body.lastChild);
+    body.appendChild(projectPanel(sortedItems,title));
+    hookButtons();
+  }
+
+  if(direction === "up"){
+    document.querySelector(".sort-by-name").setAttribute("data-direction","down");
+  }
+  else{
+    document.querySelector(".sort-by-name").setAttribute("data-direction","up");
+  }
+}
+
+
 
 function save(){
   localStorage.setItem("master", JSON.stringify(master));

@@ -1,12 +1,16 @@
 import { createWithClass, createAndAppendText, createProjectLi } from "../helpers";
 
-export default function projectPanel(projects){
+export default function projectPanel(projects,title = ""){
   const content = createWithClass("div","project-wrapper");
-  const itemsList = projects.getItemsList();
+  const itemsList = projects.getItemsList?.() || projects;
 
   const div = createWithClass("div", "title-div", "");
 
-  createAndAppendText("h2",div,projects.getTitle());
+  if(title === ""){
+    title = projects.getTitle();
+  }
+
+  createAndAppendText("h2",div,title);
   const info = createWithClass("button","project-info","?");
   div.appendChild(info);
   content.appendChild(div);
