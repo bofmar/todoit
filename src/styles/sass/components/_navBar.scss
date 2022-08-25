@@ -1,0 +1,79 @@
+@use "../abstracts/colors" as c;
+@use "../abstracts/fonts" as f;
+
+nav{
+  background-color: c.$primary;
+  
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  grid-template-rows: repeat(10, 10vh);
+  align-items: center;
+  justify-items: center;
+
+  .todoit{
+    grid-column: 1/6;
+    grid-row: 1/ span 1;
+    justify-self: normal;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    img{
+      height: 50px;
+    }
+  }
+
+  ul{
+    height: 50vh;
+    list-style: none;
+    grid-column: 1/span 5;
+    grid-row: 2/span 6;
+
+    overflow-y: scroll;
+
+    padding: 0 20px;
+
+    li{
+      min-height: 5vh;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+  }
+
+  button{
+    all: initial;
+    grid-column: 2/span 3;
+
+    font-size: f.$big-text;
+    color: c.$tertiary;
+    transition: all 200ms ease-in;
+
+    &:hover{
+      transform: scale(1.1);
+      color: c.$secondary;
+      transition: all 200ms ease-in;
+    }
+  }
+
+  .delete-nav{
+    width: 25px;
+    height: 50px;
+
+    img{
+      filter: invert(27%) sepia(72%) saturate(1563%) hue-rotate(332deg) brightness(86%) contrast(88%);
+    }
+  }
+
+  .edit-nav{
+    width: 25px;
+    height: 50px;
+
+    img{
+      filter: invert(96%) sepia(16%) saturate(215%) hue-rotate(172deg) brightness(98%) contrast(93%);
+    }
+  }
+}

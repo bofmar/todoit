@@ -1,3 +1,6 @@
+import trash from "/src/assets/svg/delete.svg";
+import edit from "/src/assets/svg/edit.svg";
+
 export function createAndAppendText(type,target,message){
   const text = document.createElement(type);
   text.innerText = message;
@@ -10,6 +13,13 @@ export function createWithClass(type,className,message = ""){
   newElement.innerText = message;
 
   return newElement;
+}
+
+export function createAndAppendImage(path,target,name){
+  const image = new Image();
+  image.src = path;
+  image.classList.add(name);
+  target.appendChild(image);
 }
 
 export function createDefaultNavLi(target,arr){
@@ -32,8 +42,16 @@ export function createNavProjectLi(target, projects){
     newLi.setAttribute("data-id", projects[i].getID());
     const navButton = createWithClass("button", "nav-button", projNames[i]); // use the projNames Array to generate the buttons with the correct text.
     navButton.setAttribute("id", projects[i].getID()); // add the project's id to the co-responding button, so it can be referenced by it.
-    const editButton = createWithClass("button","edit-nav","Edit");
-    const deleteButton = createWithClass("button","delete-nav", "Delete");
+    const editButton = createWithClass("button","edit-nav");
+    const editIcon = new Image();
+    editIcon.src = edit;
+    editButton.appendChild(editIcon);
+
+    const deleteButton = createWithClass("button","delete-nav");
+    const delIcon = new Image();
+    delIcon.src = trash;
+    deleteButton.appendChild(delIcon);  
+
 
     newLi.appendChild(navButton);
     newLi.appendChild(editButton);
