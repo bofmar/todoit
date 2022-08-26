@@ -1,0 +1,51 @@
+@use "../abstracts/colors" as c;
+@use "../abstracts/fonts" as f;
+
+.project-wrapper{
+  background-color: c.$tertiary;
+  font-family: f.$popins;
+
+  display: grid;
+  grid-template-columns: repeat(11,1fr);
+  grid-template-rows: 1fr 1fr 5fr 1fr;
+  align-items: center;
+  
+  .title-div{
+    grid-row: 1/span 1;
+    grid-column: 5/ span 3;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 10px;
+
+    button{
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      text-align: center;
+      font-weight: bold;
+      border: 3px solid c.$secondary;
+      transition: all 200ms ease-in;
+
+      &:hover{
+        transform: scale(1.2);
+        transition: all 200ms ease-in;
+      }
+    }
+  }
+
+  .fields{
+    grid-row: 2/span 1;
+    grid-column: 3/ span 7;
+  }
+
+  .items-list{
+    grid-row: 3/span 1;
+    grid-column: 3/ span 7;
+  }
+
+  .add-item-button{
+    grid-row: 4/span 1;
+    grid-column: 6/span 1;
+  }
+}
