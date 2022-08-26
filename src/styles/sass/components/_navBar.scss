@@ -28,7 +28,6 @@ nav{
 
   ul{
     height: 50vh;
-    list-style: none;
     grid-column: 1/span 5;
     grid-row: 2/span 6;
 
@@ -46,7 +45,6 @@ nav{
   }
 
   button{
-    all: initial;
     grid-column: 2/span 3;
     position: relative;
 
