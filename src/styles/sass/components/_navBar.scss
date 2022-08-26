@@ -4,12 +4,16 @@
 
 nav{
   background-color: c.$primary;
+
+  font-family: f.$popins;
   
   display: grid;
   grid-template-columns: repeat(5,1fr);
   grid-template-rows: repeat(10, 10vh);
   align-items: center;
   justify-items: center;
+
+  user-select: none;
 
   .todoit{
     grid-column: 1/6;
@@ -39,7 +43,33 @@ nav{
       min-height: 5vh;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 9px;
+    }
+
+    h2{
+      color: c.$text-white;
+      font-weight: bold;
+      position: relative;
+
+      &::before{
+        content: "";
+        width: 200%;
+        height: 1px;
+        background-color: c.$text-white;
+        position: absolute;
+        left: 0;
+        top: -3px;
+      }
+
+      &::after{
+        content: "";
+        width: 200%;
+        height: 1px;
+        background-color: c.$text-white;
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+      }
     }
 
   }
@@ -49,7 +79,7 @@ nav{
     position: relative;
 
     font-size: f.$big-text;
-    color: c.$tertiary;
+    color: c.$text-white;
     transition: all 200ms ease-in;
 
     &::after{
@@ -83,11 +113,29 @@ nav{
   .edit-nav{
     @include m.button-with-icon("white");
   }
+
+  .add-project-button{
+    position: relative;
+    &:before{
+      content: url(/src/assets/svg/plus.svg);
+      width: 25px;
+      height: 25px;
+      position: absolute;
+      left: -30px;
+      bottom: 5px;
+      filter: invert(96%) sepia(16%) saturate(215%) hue-rotate(172deg) brightness(98%) contrast(93%);
+      transition: all 250ms ease-in;
+    }
+    &:hover{
+      &::before{
+        transform: rotate(180deg);
+        transition: all 250ms ease-in;
+      }
+    }
+  }
 }
 
 /*
   TODO in navbar
-  - Style the Projects text
-  - Add section splitters
   - Add a more pleasant font (different for the logo?)
 */
