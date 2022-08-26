@@ -61,6 +61,22 @@ export function createNavProjectLi(target, projects){
 }
 
 export function createProjectLi(target, arr){
+  // const liFields = createWithClass("li","fields");
+  // target.appendChild(liFields);
+  // const titleDiv = createWithClass("div", "title-and-sort");
+  // liFields.appendChild(titleDiv);
+  // createAndAppendText("span",titleDiv,"Name");
+  // const sortName = createWithClass("button","sort-by-name","Sort");
+  // sortName.setAttribute("data-direction","up"); // sorting goes up by default;
+  // titleDiv.appendChild(sortName);
+
+  // const dateDiv = createWithClass("div", "date-and-sort");
+  // liFields.appendChild(dateDiv);
+  // createAndAppendText("span",dateDiv,"Due date");
+  // const sortDate = createWithClass("button","sort-by-date","Sort");
+  // sortDate.setAttribute("data-direction","up"); // sorting goes up by default;
+  // dateDiv.appendChild(sortDate);
+
   for(let i = 0; i < arr.length; i++){
     const newLi = document.createElement("li");
     newLi.setAttribute("data-id", arr[i].getID());

@@ -37,11 +37,33 @@
   .fields{
     grid-row: 2/span 1;
     grid-column: 3/ span 7;
+    display: grid;
+    grid-template-columns: 40% 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(auto-fill, 50px);
+    align-items: end;
+    
+    .date-and-sort{
+      grid-column: 3/span 1;
+    }
   }
 
   .items-list{
     grid-row: 3/span 1;
     grid-column: 3/ span 7;
+    align-self: start;
+
+    margin: 0;
+    padding: 0;
+    height: 50vh;
+
+    overflow-y: scroll;
+
+    li{
+      display: grid;
+      grid-template-columns: 40% 1fr 1fr 1fr 1fr;
+      grid-template-rows: repeat(auto-fill, 50px);
+      align-items: center;
+    }
   }
 
   .add-item-button{
