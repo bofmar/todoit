@@ -5,6 +5,8 @@
   background-color: c.$tertiary;
   font-family: f.$popins;
 
+  color: c.$text-black;
+
   display: grid;
   grid-template-columns: repeat(11,1fr);
   grid-template-rows: 1fr 1fr 5fr 1fr;
@@ -17,6 +19,10 @@
     justify-content: center;
     align-items: baseline;
     gap: 10px;
+
+    h2{
+      font-size: f.$big-text;
+    }
 
     button{
       width: 25px;
@@ -41,6 +47,26 @@
     grid-template-columns: 40% 1fr 1fr 1fr 1fr;
     grid-template-rows: repeat(auto-fill, 50px);
     align-items: end;
+
+    border-bottom: 1px solid black;
+    margin-bottom: -15px;
+    padding-bottom: 5px;
+
+    span{
+      padding-right: 10px;
+      font-weight: bold;
+    }
+
+    button{
+      width: 25px;
+      height: 25px;
+      transition: all 200ms ease-in;
+
+      &:hover{
+        transform: scale(1.2) rotate(180deg);
+        transition: all 250ms ease-in;
+      }
+    }
     
     .date-and-sort{
       grid-column: 3/span 1;
@@ -70,4 +96,8 @@
     grid-row: 4/span 1;
     grid-column: 6/span 1;
   }
+}
+
+.done{
+  text-decoration: line-through;
 }

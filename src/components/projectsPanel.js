@@ -1,4 +1,5 @@
 import { createWithClass, createAndAppendText, createProjectLi } from "../helpers";
+import Icon from "/src/assets/svg/sort.svg";
 
 export default function projectPanel(projects,title = ""){
   const content = createWithClass("div","project-wrapper");
@@ -21,14 +22,20 @@ export default function projectPanel(projects,title = ""){
   const titleDiv = createWithClass("div", "title-and-sort");
   divFields.appendChild(titleDiv);
   createAndAppendText("span",titleDiv,"Name");
-  const sortName = createWithClass("button","sort-by-name","Sort");
+  const sortName = createWithClass("button","sort-by-name");
+  const sort = new Image();
+  sort.src = Icon;
+  sortName.appendChild(sort);
   sortName.setAttribute("data-direction","up"); // sorting goes up by default;
   titleDiv.appendChild(sortName);
   
   const dateDiv = createWithClass("div", "date-and-sort");
   divFields.appendChild(dateDiv);
   createAndAppendText("span",dateDiv,"Due date");
-  const sortDate = createWithClass("button","sort-by-date","Sort");
+  const sortDate = createWithClass("button","sort-by-date");
+  const sort2 = new Image();
+  sort2.src = Icon;
+  sortDate.appendChild(sort2);
   sortDate.setAttribute("data-direction","up"); // sorting goes up by default;
   dateDiv.appendChild(sortDate);
 

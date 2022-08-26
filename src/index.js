@@ -288,6 +288,7 @@ function popItemDetails(id){
 function changeDone(id){
   const item = master.findItemFromID(id);
   item.flipDone();
+  document.querySelector(`[data-id = '${id}']`).classList.toggle("done");
   save();
 }
 
@@ -431,7 +432,7 @@ function findToday(){
 }
 
 function sortByName(e){
-  const direction = e.target.getAttribute("data-direction");
+  const direction = e.target.parentNode.getAttribute("data-direction");
   let sortedItems = [];
 
   if(currentPage === "All Projects"){
@@ -470,7 +471,7 @@ function sortByName(e){
 }
 
 function sortByDate(e){
-  const direction = e.target.getAttribute("data-direction");
+  const direction = e.target.parentNode.getAttribute("data-direction");
   let sortedItems = [];
   if(currentPage === "All Projects"){
     sortedItems = master.getItemsList().sort( (a,b) => {
