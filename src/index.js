@@ -18,7 +18,7 @@ import projectDetails from "./components/projectDetails.js";
 import footerComp from "./components/footer.js";
 // APIs
 import { createProjectLi, createNavProjectLi } from "./helpers.js";
-import { getToday, filterWithinWeek, compare, isExpired } from "./time.js";
+import { getToday, filterWithinWeek, compare, isExpired, expiresToday, expiresInAWeek } from "./time.js";
 
 import "./styles/sass/index.scss";
 
@@ -292,10 +292,18 @@ function changeDone(id){
 
   if(item.isDone()){
     document.querySelector(`[data-id = '${id}']`).firstChild.classList.remove("expired");
+    document.querySelector(`[data-id = '${id}']`).firstChild.classList.remove("expires-today");
+    document.querySelector(`[data-id = '${id}']`).firstChild.classList.remove("expires-in-week");
   }
 
   else if(isExpired(item)){
     document.querySelector(`[data-id = '${id}']`).firstChild.classList.add("expired");
+  }
+  else if(expiresToday(item)){
+    document.querySelector(`[data-id = '${id}']`).firstChild.classList.add("expires-today");
+  }
+  else if(expiresInAWeek(item)){
+    document.querySelector(`[data-id = '${id}']`).firstChild.classList.add("expires-in-week");
   }
   save();
 }

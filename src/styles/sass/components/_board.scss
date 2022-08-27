@@ -154,8 +154,20 @@
   }
 }
 
-.no-pseudo{
+.expires-today{
+  position: relative;
   &::before{
-    display: none;
+    content: url(/src/assets/svg/today.svg);
+    padding-right: 5px;
+    filter: invert(27%) sepia(72%) saturate(1563%) hue-rotate(332deg) brightness(86%) contrast(88%);
+  }
+}
+
+.expires-in-week{
+  position: relative;
+  &::before{
+    content: url(/src/assets/svg/week.svg);
+    padding-right: 5px;
+    filter: invert(67%) sepia(97%) saturate(789%) hue-rotate(8deg) brightness(103%) contrast(106%);
   }
 }

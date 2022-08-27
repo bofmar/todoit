@@ -50,7 +50,31 @@ export function isExpired(a){
     return false;
   }
   else{
-    if(compareDesc(parseISO(a.getDueDate()), parseISO(getToday())) === -1){
+    if(compareDesc(parseISO(a.getDueDate()), parseISO(getToday())) === -1 || compareDesc(parseISO(a.getDueDate()), parseISO(getToday())) === 0){
+      return false;
+    }
+    return true;
+  }
+}
+
+export function expiresToday(a){
+  if(a.getDueDate() === "Never"){
+    return false;
+  }
+  else{
+    if(compareDesc(parseISO(a.getDueDate()), parseISO(getToday())) === 0){
+      return true;
+    }
+    return false;
+  }
+}
+
+export function expiresInAWeek(a){
+  if(a.getDueDate() === "Never"){
+    return false;
+  }
+  else{
+    if(compareDesc(parseISO(a.getDueDate()), parseISO(getOneWeek())) === -1 || compareDesc(parseISO(a.getDueDate()), parseISO(getOneWeek())) === 0){
       return false;
     }
     return true;
