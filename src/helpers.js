@@ -1,5 +1,6 @@
 import trash from "/src/assets/svg/delete.svg";
 import edit from "/src/assets/svg/edit.svg";
+import { isExpired } from "./time";
 
 export function createAndAppendText(type,target,message){
   const text = document.createElement(type);
@@ -68,6 +69,9 @@ export function createProjectLi(target, arr){
     }
     newLi.setAttribute("data-id", arr[i].getID());
     createAndAppendText("button",newLi,arr[i].getTitle());
+    if(isExpired(arr[i]) === true && arr[i].isDone() === false){
+      newLi.lastChild.classList.add("expired");
+    }
     createAndAppendText("button",newLi,"Details");
     createAndAppendText("span",newLi,arr[i].getDueDate());
     createAndAppendText("button",newLi,"Edit");

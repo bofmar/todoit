@@ -144,3 +144,18 @@
     text-decoration: line-through;
   }
 }
+
+.expired{
+  position: relative;
+  &::before{
+    content: url(/src/assets/svg/expired.svg);
+    padding-right: 5px;
+    filter: invert(27%) sepia(72%) saturate(1563%) hue-rotate(332deg) brightness(86%) contrast(88%);
+  }
+}
+
+.no-pseudo{
+  &::before{
+    display: none;
+  }
+}

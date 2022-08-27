@@ -18,7 +18,7 @@ import projectDetails from "./components/projectDetails.js";
 import footerComp from "./components/footer.js";
 // APIs
 import { createProjectLi, createNavProjectLi } from "./helpers.js";
-import { getToday, filterWithinWeek, compare } from "./time.js";
+import { getToday, filterWithinWeek, compare, isExpired } from "./time.js";
 
 import "./styles/sass/index.scss";
 
@@ -289,6 +289,14 @@ function changeDone(id){
   const item = master.findItemFromID(id);
   item.flipDone();
   document.querySelector(`[data-id = '${id}']`).classList.toggle("done");
+
+  if(item.isDone()){
+    document.querySelector(`[data-id = '${id}']`).firstChild.classList.remove("expired");
+  }
+
+  else if(isExpired(item)){
+    document.querySelector(`[data-id = '${id}']`).firstChild.classList.add("expired");
+  }
   save();
 }
 

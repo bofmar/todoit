@@ -44,3 +44,15 @@ export function compare(a,b){
 
   return compareDesc(parseISO(a.getDueDate()),parseISO(b.getDueDate()));
 }
+
+export function isExpired(a){
+  if(a.getDueDate() === "Never"){
+    return false;
+  }
+  else{
+    if(compareDesc(parseISO(a.getDueDate()), parseISO(getToday())) === -1){
+      return false;
+    }
+    return true;
+  }
+}
