@@ -67,6 +67,15 @@ export function createProjectLi(target, arr){
     if(arr[i].isDone()){
       newLi.classList.add("done");
     }
+    if(arr[i].getPriority() === "high"){
+      newLi.classList.add("ph");
+    }
+    else if(arr[i].getPriority() === "medium"){
+      newLi.classList.add("pm");
+    }
+    else{
+      newLi.classList.add("pl");
+    }
     newLi.setAttribute("data-id", arr[i].getID());
     createAndAppendText("button",newLi,arr[i].getTitle());
     if(isExpired(arr[i]) === true && arr[i].isDone() === false){

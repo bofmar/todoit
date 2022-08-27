@@ -342,6 +342,21 @@ function editItems(id){
     item.setPriority(result.priority);
 
     const target = document.querySelector(`[data-id = '${id}']`);
+    if(result.priority === "high"){
+      target.classList.add("ph");
+      target.classList.remove("pm");
+      target.classList.remove("pl");
+    }
+    else if(result.priority === "medium"){
+      target.classList.remove("ph");
+      target.classList.add("pm");
+      target.classList.remove("pl");
+    }
+    else{
+      target.classList.remove("ph");
+      target.classList.remove("pm");
+      target.classList.add("pl");
+    }
     const buttonsList = target.querySelectorAll("button");
 
     buttonsList[0].innerText = item.getTitle();

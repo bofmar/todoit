@@ -88,6 +88,9 @@
       grid-template-rows: repeat(auto-fill, 50px);
       align-items: center;
 
+      margin-bottom: 8px;
+      padding-left: 5px;
+
       button{
 
         transition: all 200ms ease-in;
@@ -170,4 +173,19 @@
     padding-right: 5px;
     filter: invert(67%) sepia(97%) saturate(789%) hue-rotate(8deg) brightness(103%) contrast(106%);
   }
+}
+
+.ph{
+  border-left: 2px solid red;
+  border-radius: 1px;
+}
+
+.pm{
+  border-left: 2px solid yellow;
+  border-radius: 1px;
+}
+
+.pl{
+  border-left: 2px solid green;
+  border-radius: 1px;
 }
