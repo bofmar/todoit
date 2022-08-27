@@ -24,3 +24,12 @@
     @return invert(96%) sepia(16%) saturate(215%) hue-rotate(172deg) brightness(98%) contrast(93%);
   }
 }
+
+@mixin button-hover($time: 200, $scale:1.2){
+  transition: all #{$time}ms ease-in;
+
+  &:hover{
+    transform: scale($scale);
+    transition: all #{$time}ms ease-in;
+  }
+}
