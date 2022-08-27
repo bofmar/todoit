@@ -1,5 +1,6 @@
 @use "../abstracts/colors" as c;
 @use "../abstracts/fonts" as f;
+@use "../abstracts/mixins" as m;
 
 .project-wrapper{
   background-color: c.$tertiary;
@@ -31,12 +32,9 @@
       text-align: center;
       font-weight: bold;
       border: 3px solid c.$secondary;
-      transition: all 200ms ease-in;
 
-      &:hover{
-        transform: scale(1.2);
-        transition: all 200ms ease-in;
-      }
+      @include m.button-hover();
+
     }
   }
 
@@ -89,15 +87,60 @@
       grid-template-columns: 40% 1fr 1fr 1fr 1fr;
       grid-template-rows: repeat(auto-fill, 50px);
       align-items: center;
+
+      button{
+
+        transition: all 200ms ease-in;
+        &:hover{
+          font-size: 1.05rem;
+          transition: all 200ms ease-in;
+        }
+
+        &:not(:first-child){
+          border: 2px solid c.$button-primary;
+          border-radius: 5px;
+          text-align: center;
+          width: 9ch;
+        }
+      }
+
+      span{
+        user-select: none;
+      }
+      
     }
+
   }
 
   .add-item-button{
     grid-row: 4/span 1;
     grid-column: 6/span 1;
+
+    align-self: start;
+
+    font-size: f.$big-text;
+    color: c.$text-white;
+    background-color: c.$button-secondary;
+
+    text-align: center;
+
+    width: 10ch;
+    height: 2.5rem;
+    border-radius: 20px;
+
+    @include m.button-hover(200,1.1);
   }
+
 }
 
 .done{
-  text-decoration: line-through;
+  
+  button{
+    &:first-child{
+      text-decoration: line-through;
+    }
+  }
+  span{
+    text-decoration: line-through;
+  }
 }
