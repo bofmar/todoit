@@ -1,5 +1,4 @@
 /* Five modals
-Edit item,
 Edit project,
 details,
 validation error
@@ -192,4 +191,36 @@ dialog{
     }
   }
 
+}
+
+.edit-project-modal{
+  height: 35vh;
+  form{
+    @include m.modal-base();
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .edit-title-div{
+    grid-column: 1;
+    grid-row: 2;
+
+    input{
+      @include m.validate();
+    }
+  }
+
+  .edit-area-div{
+    grid-column: 2;
+    grid-row: 2/span 2;
+  }
+
+  .edit-modal-buttons-div{
+    grid-column: 1;
+    grid-row: 3;
+    align-self: end;
+
+    display: flex;
+    gap: 20px;
+  }
 }

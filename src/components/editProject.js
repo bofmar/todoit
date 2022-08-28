@@ -5,9 +5,9 @@ export default function editProject(project){
   const modal = document.createElement("dialog");
   modal.classList.add("modal", "edit-project-modal");
 
-  createAndAppendText("h3",modal, "Edit Project");
-
+  
   const form = document.createElement("form");
+  createAndAppendText("h3",form, "Edit Project");
 
   // Add the title field
   const titleDiv = createWithClass("div","edit-title-div");
@@ -16,6 +16,7 @@ export default function editProject(project){
   const titleField = document.createElement("input");
   setFieldAttributes(titleField,"text","edit-title","title");
   titleField.required = true;
+  titleField.setAttribute("pattern",".+");
   titleField.value = project.getTitle();
   titleDiv.appendChild(titleField);
   form.appendChild(titleDiv);
@@ -33,14 +34,14 @@ export default function editProject(project){
   else{
     areaField.value = project.getDescription();
   }
-  // TODO set max size, max characters with css
+  areaField.setAttribute("rows","7");
   areaDiv.appendChild(areaField);
   form.appendChild(areaDiv);
 
   //Add the buttons
   const buttonsDiv = createWithClass("div", "edit-modal-buttons-div");
   const cancel = createWithClass("button","edit-modal-cancel", "Cancel");
-  const edit = createWithClass("button","edit-modal-add", "Edit Project");
+  const edit = createWithClass("button","edit-modal-add", "Edit");
   buttonsDiv.appendChild(cancel);
   buttonsDiv.appendChild(edit);
   form.appendChild(buttonsDiv);
