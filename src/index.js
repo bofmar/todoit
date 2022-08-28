@@ -32,9 +32,6 @@ const addProjectModal = addProject();
 body.appendChild(addProjectModal);
 const addProjectForm = addProjectModal.querySelector("form");
 
-const formErrorModal = formError();
-body.appendChild(formErrorModal);
-
 const footer = footerComp();
 body.appendChild(footer);
 
@@ -44,11 +41,6 @@ let currentPage = "All Projects";
   body.appendChild(projectPanel(master));
 
   hookButtons();
-
-  formErrorModal.querySelector("button").addEventListener("click", (e)=>{
-    e.preventDefault();
-    formErrorModal.close();
-  }); // hook the ok button in the form error modal
 
   const navButtons = document.querySelectorAll(".nav-button");
   navButtons.forEach(button => button.addEventListener("click", ()=> {
@@ -73,6 +65,13 @@ let currentPage = "All Projects";
     }
 
     if(result.title === ""){
+      const formErrorModal = formError();
+      body.appendChild(formErrorModal);
+      formErrorModal.querySelector("button").addEventListener("click", (e)=>{
+        e.preventDefault();
+        formErrorModal.close();
+        body.removeChild(formErrorModal);
+      }); // hook the ok button in the form error modal
       formErrorModal.showModal();
       return;
     }
@@ -149,6 +148,13 @@ function hookButtons(){
           project: document.getElementById("item-project").value
         }
         if(result.title === ""){
+          const formErrorModal = formError();
+          body.appendChild(formErrorModal);
+          formErrorModal.querySelector("button").addEventListener("click", (e)=>{
+            e.preventDefault();
+            formErrorModal.close();
+            body.removeChild(formErrorModal);
+          }); // hook the ok button in the form error modal
           formErrorModal.showModal();
           return;
         }
@@ -329,6 +335,13 @@ function editItems(id){
       priority: document.getElementById("edit-priority").value,
     }
     if(result.title === ""){
+      const formErrorModal = formError();
+      body.appendChild(formErrorModal);
+      formErrorModal.querySelector("button").addEventListener("click", (e)=>{
+        e.preventDefault();
+        formErrorModal.close();
+        body.removeChild(formErrorModal);
+      }); // hook the ok button in the form error modal
       formErrorModal.showModal();
       return;
     }
@@ -407,6 +420,13 @@ function editPro(id){
       description: document.getElementById("edit-description").value,
     }
     if(result.title === ""){
+      const formErrorModal = formError();
+      body.appendChild(formErrorModal);
+      formErrorModal.querySelector("button").addEventListener("click", (e)=>{
+        e.preventDefault();
+        formErrorModal.close();
+        body.removeChild(formErrorModal);
+      }); // hook the ok button in the form error modal
       formErrorModal.showModal();
       return;
     }

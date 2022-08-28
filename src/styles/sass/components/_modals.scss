@@ -1,5 +1,4 @@
 /* Five modals
-details,
 validation error
 
 The edit modal is added twice when in today or upcoming pages. Find why, fix it
@@ -64,10 +63,38 @@ dialog{
 
   #delete{
     grid-column: 4/ span 1;
+  }  
+}
+
+.form-error-modal{
+  width: 20vw;
+  display: grid;
+  grid-template-columns: auto auto;
+
+  align-content: center;
+  align-items: center;
+  gap: 10px;
+
+  img{
+    grid-column: 1;
+    grid-row: 2;
+    width: 90px;
+    height: 90px;
+  }
+  h3{
+    grid-column: 2;
+  }
+  p{
+    grid-column: 2;
   }
 
-  
+  button{
+    grid-column: 2;
+    justify-self: center;
+  }
 }
+
+
 .add-item-modal{
   height: 40vh;
 
