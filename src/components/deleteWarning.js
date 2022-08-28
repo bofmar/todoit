@@ -1,6 +1,12 @@
+import image from "/src/assets/svg/warning-for-modal.svg";
+
 export default function deleteWarning(project){
   const modal = document.createElement("dialog");
   modal.classList.add("modal", "delete-warning-modal");
+
+  const icon = new Image();
+  icon.src = image;
+  modal.appendChild(icon);
 
   const title = document.createElement("h3");
   title.innerText = `Are you sure you want to delete ${project.getTitle()} and all associated tasks?`;
