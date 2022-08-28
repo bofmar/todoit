@@ -456,7 +456,7 @@ function findToday(){
   const allItems = master.getItemsList();
 
   const todayItems = allItems.filter(item => {
-    return item.getDueDate() === today;
+    return item.getDueDate() === today && item.isDone() === false;
   });
 
   return todayItems;

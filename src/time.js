@@ -24,7 +24,7 @@ export function filterWithinWeek(items){
     if(item.getDueDate() === "Never"){
       return false;
     }
-    else if(compareDesc(parseISO(item.getDueDate()), parseISO(getOneWeek())) === -1){
+    else if(compareDesc(parseISO(item.getDueDate()), parseISO(getOneWeek())) === -1 || item.isDone()){
       return false;
     }
     else{
