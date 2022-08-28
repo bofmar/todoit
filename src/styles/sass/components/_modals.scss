@@ -1,9 +1,9 @@
 /* Five modals
-Add item,
 Add project,
 Edit item,
 Edit project,
-details
+details,
+validation error
 
 The edit modal is added twice when in today or upcoming pages. Find why, fix it
 */
@@ -74,39 +74,13 @@ dialog{
   height: 40vh;
 
   form{
-    display: grid;
-    
+    @include m.modal-base();
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(5, 1fr);
-
-    gap: 10px;
-
-    align-items: start;
-    justify-items: start;
-
-    h3{
-      grid-column: 1/span 2;
-      align-self: center;
-      width: 100%;
-      padding-bottom: 10px;
-      font-size: f.$big-text;
-
-      border-bottom: solid 1px black;
-    }
-
-    div{
-      &:not(:last-child){
-        @include m.form-pair();
-
-      }
-    }
 
     .item-title-div{
       grid-column: 1;
       grid-row: 2;
-
-      display: flex;
-      flex-direction: column;
 
       input{
         @include m.validate();
@@ -143,4 +117,36 @@ dialog{
     }
   }
 
+}
+
+.add-project-modal{
+  height: 35vh;
+  form{
+    @include m.modal-base();
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .project-title-div{
+    grid-column: 1;
+    grid-row: 2;
+
+    input{
+      @include m.validate();
+    }
+  }
+
+  .project-area-div{
+    grid-column: 2;
+    grid-row: 2/span 2;
+  }
+
+  .project-modal-buttons-div{
+    grid-column: 1;
+    grid-row: 3;
+    align-self: end;
+
+    display: flex;
+    gap: 20px;
+  }
 }

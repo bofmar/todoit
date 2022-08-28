@@ -4,9 +4,9 @@ export default function addProject(){
   const modal = document.createElement("dialog");
   modal.classList.add("modal", "add-project-modal");
 
-  createAndAppendText("h3",modal, "New Project");
-
+  
   const form = document.createElement("form");
+  createAndAppendText("h3",form, "New Project");
 
   // Add the title field
   const titleDiv = createWithClass("div","project-title-div");
@@ -15,6 +15,7 @@ export default function addProject(){
   const titleField = document.createElement("input");
   setFieldAttributes(titleField,"text","project-title","title");
   titleField.required = true;
+  titleField.setAttribute("pattern",".+");
   titleDiv.appendChild(titleField);
   form.appendChild(titleDiv);
 
@@ -26,7 +27,7 @@ export default function addProject(){
   areaField.setAttribute("id", "project-description");
   areaField.setAttribute("name", "description");
   areaField.setAttribute("placeholder", "No description...");
-  // TODO set max size, max characters with css
+  areaField.setAttribute("rows","7");
   areaDiv.appendChild(areaField);
   form.appendChild(areaDiv);
 

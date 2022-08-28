@@ -1,3 +1,5 @@
+@use "./fonts" as f;
+
 @mixin button-with-icon($color){
   width: 25px;
   height: 50px;
@@ -49,5 +51,30 @@
   &:valid{
     border: none;
     outline: 2px solid green;
+  }
+}
+
+@mixin modal-base(){
+  display: grid;
+
+  gap: 10px;
+  align-items: start;
+  justify-items: start;
+
+  h3{
+    grid-column: 1/span 2;
+    align-self: center;
+    width: 100%;
+    padding-bottom: 10px;
+    font-size: f.$big-text;
+
+    border-bottom: solid 1px black;
+  }
+
+  div{
+    &:not(:last-child){
+      @include form-pair();
+
+    }
   }
 }
