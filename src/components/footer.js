@@ -1,3 +1,6 @@
+import github from "/src/assets/svg/github.svg";
+import codepen from "/src/assets/svg/codepen.svg";
+
 export default function footerComp(){
   const content = document.createElement("footer");
   
@@ -8,21 +11,21 @@ export default function footerComp(){
   const socials = document.createElement("div");
   content.appendChild(socials);
   
-  const gitHub = document.createElement("a");
-  gitHub.setAttribute("href","https://github.com/bofmar");
-  gitHub.setAttribute("target", "blank");
-  gitHub.innerText = "github";
-  socials.appendChild(gitHub);
-
-  const codePen = document.createElement("a");
-  codePen.setAttribute("href","https://codepen.io/bofmar");
-  codePen.innerText = "codePen";
-  socials.appendChild(codePen);
-
-  const linkedIn = document.createElement("a");
-  linkedIn.setAttribute("href", "https://www.linkedin.com/in/marios-mpofilakis-03a1651b6/");
-  linkedIn.innerText = "linkedin";
-  socials.appendChild(linkedIn);
+  createSocial(socials,"https://github.com/bofmar","github",github);
+  createSocial(socials,"https://codepen.io/bofmar","codepen",codepen);
 
   return content;
+}
+
+function createSocial(parent,href,id,icon){
+  const social = document.createElement("a");
+  social.setAttribute("href",href);
+  social.setAttribute("target", "_blank");
+  social.setAttribute("id",id);
+
+  const newIcon = new Image();
+  newIcon.src = icon;
+  social.appendChild(newIcon);
+
+  parent.appendChild(social);
 }
