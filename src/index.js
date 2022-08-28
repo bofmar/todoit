@@ -115,13 +115,11 @@ function swapPage(button){
         currentPage = button.innerText;
         const arr = findToday();
         body.appendChild(todayPage(arr));
-        hookButtons();
         break;
       case "Upcoming" :
         currentPage = button.innerText;
         const arr2 = filterWithinWeek(master.getItemsList());
         body.appendChild(upcomingPage(arr2));
-        hookButtons();
         break;
     }
   } // one of the default pages was selected
