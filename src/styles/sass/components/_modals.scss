@@ -1,5 +1,4 @@
 /* Five modals
-Add project,
 Edit item,
 Edit project,
 details,
@@ -149,4 +148,48 @@ dialog{
     display: flex;
     gap: 20px;
   }
+}
+
+.edit-item-modal{
+  height: 46vh;
+
+  form{
+    @include m.modal-base();
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+
+    .edit-title-div{
+      grid-column: 1;
+      grid-row: 2;
+
+      input{
+        @include m.validate();
+      }
+    }
+
+    .edit-area-div{
+      grid-column: 1;
+      grid-row: 3/span 2;
+    }
+
+    .edit-due-div{
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .edit-priority-div{
+      grid-column: 2;
+      grid-row: 3;
+    }
+
+    .edit-modal-buttons-div{
+      grid-column: 2;
+      grid-row: 4;
+      align-self: end;
+
+      display: flex;
+      gap: 20px;
+    }
+  }
+
 }

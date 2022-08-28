@@ -8,9 +8,9 @@ export default function editItem(projects,item){
   const modal = document.createElement("dialog");
   modal.classList.add("modal", "edit-item-modal");
 
-  createAndAppendText("h3",modal, "Edit Task");
-
+  
   const form = document.createElement("form");
+  createAndAppendText("h3",form, "Edit Task");
 
   // Add the title field
   const titleDiv = createWithClass("div","edit-title-div");
@@ -19,6 +19,7 @@ export default function editItem(projects,item){
   const titleField = document.createElement("input");
   setFieldAttributes(titleField,"text","edit-title","title");
   titleField.required = true;
+  titleField.setAttribute("pattern",".+");
   titleField.value = item.getTitle();
   titleDiv.appendChild(titleField);
   form.appendChild(titleDiv);
@@ -49,7 +50,7 @@ export default function editItem(projects,item){
   else{
     areaField.value = item.getDescription();
   }
-  // TODO set max size, max characters with css
+  areaField.setAttribute("rows","7");
   areaDiv.appendChild(areaField);
   form.appendChild(areaDiv);
 
