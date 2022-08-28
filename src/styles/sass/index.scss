@@ -1,10 +1,7 @@
 @use "./components/global";
 @use "./components/navBar";
 @use "./components/board";
+@use "./components/footer";
 @use "./abstracts/colors" as c;
 @import "./components/reset";
 @import "./components/pageLayout";
-
-footer{
-  background-color: c.$secondary;
-}

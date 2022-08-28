@@ -1,0 +1,5 @@
+@use "../abstracts/colors" as c;
+
+footer{
+  background-color: c.$secondary;
+}
