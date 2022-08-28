@@ -1,0 +1,63 @@
+/* Four modals
+Add item,
+Add project,
+Remove project,
+Edit item
+
+The edit modal is added twice when in today or upcoming pages. Find why, fix it
+*/
+@use "../abstracts/fonts" as f;
+@use "../abstracts/colors" as c;
+@use "../abstracts/mixins" as m;
+
+dialog{
+  font-family: f.$popins;
+
+  button{
+    width: 9ch;
+    text-align: center;
+    border: 2px solid c.$button-primary;
+    border-radius: 5px;
+
+    @include m.button-hover();
+  }
+}
+
+.delete-warning-modal{
+  height: 30vh;
+
+  display: grid;
+  grid-template-columns: auto 1fr 1fr 1fr;
+  grid-template-rows: repeat(3 1fr);
+
+  align-content: center;
+  align-items: center;
+  gap: 10px;
+
+  img{
+    grid-column: 1/ span 1;
+    grid-row: 2;
+    width: 90px;
+    height: 90px;
+  }
+  h3{
+    grid-column: 2/span 3;
+  }
+  p{
+    grid-column: 2/span 3;
+    width: 60ch;
+  }
+
+  button{
+    justify-self: center;
+  }
+
+  #cancel{
+    grid-column: 2/ span 1;
+  }
+
+  #delete{
+    grid-column: 4/ span 1;
+  }
+
+}
