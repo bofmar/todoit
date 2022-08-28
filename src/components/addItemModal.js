@@ -8,9 +8,9 @@ export default function addItemModal(projects,currentPage){
   const modal = document.createElement("dialog");
   modal.classList.add("modal", "add-item-modal");
 
-  createAndAppendText("h3",modal, "New Task");
-
+  
   const form = document.createElement("form");
+  createAndAppendText("h3",form, "New Task");
 
   // Add the title field
   const titleDiv = createWithClass("div","item-title-div");
@@ -18,6 +18,7 @@ export default function addItemModal(projects,currentPage){
   titleDiv.appendChild(titleLabel);
   const titleField = document.createElement("input");
   setFieldAttributes(titleField,"text","item-title","title");
+  titleField.setAttribute("pattern",".+");
   titleField.required = true;
   titleDiv.appendChild(titleField);
   form.appendChild(titleDiv);
@@ -40,7 +41,7 @@ export default function addItemModal(projects,currentPage){
   areaField.setAttribute("id", "item-description");
   areaField.setAttribute("name", "description");
   areaField.setAttribute("placeholder", "No description...");
-  // TODO set max size, max characters with css
+  areaField.setAttribute("rows","7");
   areaDiv.appendChild(areaField);
   form.appendChild(areaDiv);
 

@@ -33,3 +33,21 @@
     transition: all #{$time}ms ease-in;
   }
 }
+
+@mixin form-pair(){
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin validate(){
+  &:invalid{
+    background-color: ivory;
+    border: none;
+    outline: 2px solid red;
+
+  }
+  &:valid{
+    border: none;
+    outline: 2px solid green;
+  }
+}

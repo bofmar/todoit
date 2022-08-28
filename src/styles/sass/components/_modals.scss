@@ -1,8 +1,9 @@
-/* Four modals
+/* Five modals
 Add item,
 Add project,
-Remove project,
-Edit item
+Edit item,
+Edit project,
+details
 
 The edit modal is added twice when in today or upcoming pages. Find why, fix it
 */
@@ -12,6 +13,7 @@ The edit modal is added twice when in today or upcoming pages. Find why, fix it
 
 dialog{
   font-family: f.$popins;
+  height: 30vh;
 
   button{
     width: 9ch;
@@ -21,14 +23,20 @@ dialog{
 
     @include m.button-hover();
   }
+
+  label{
+    font-weight: bold;
+  }
+
+  textarea{
+    resize: none;
+  }
 }
 
 .delete-warning-modal{
-  height: 30vh;
 
   display: grid;
   grid-template-columns: auto 1fr 1fr 1fr;
-  grid-template-rows: repeat(3 1fr);
 
   align-content: center;
   align-items: center;
@@ -58,6 +66,81 @@ dialog{
 
   #delete{
     grid-column: 4/ span 1;
+  }
+
+  
+}
+.add-item-modal{
+  height: 40vh;
+
+  form{
+    display: grid;
+    
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+
+    gap: 10px;
+
+    align-items: start;
+    justify-items: start;
+
+    h3{
+      grid-column: 1/span 2;
+      align-self: center;
+      width: 100%;
+      padding-bottom: 10px;
+      font-size: f.$big-text;
+
+      border-bottom: solid 1px black;
+    }
+
+    div{
+      &:not(:last-child){
+        @include m.form-pair();
+
+      }
+    }
+
+    .item-title-div{
+      grid-column: 1;
+      grid-row: 2;
+
+      display: flex;
+      flex-direction: column;
+
+      input{
+        @include m.validate();
+      }
+    }
+
+    .item-area-div{
+      grid-column: 1;
+      grid-row: 3/span 3;
+    }
+
+    .item-due-div{
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .item-priority-div{
+      grid-column: 2;
+      grid-row: 3;
+    }
+
+    .item-project-div{
+      grid-column: 2;
+      grid-row: 4;
+    }
+
+    .item-modal-buttons-div{
+      grid-column: 2;
+      grid-row: 5;
+      align-self: end;
+
+      display: flex;
+      gap: 20px;
+    }
   }
 
 }
