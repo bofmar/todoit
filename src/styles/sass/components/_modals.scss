@@ -1,9 +1,9 @@
 /* Five modals
-Edit project,
 details,
 validation error
 
 The edit modal is added twice when in today or upcoming pages. Find why, fix it
+Set max characters for textfields(180ch) and project names and item names
 */
 @use "../abstracts/fonts" as f;
 @use "../abstracts/colors" as c;
@@ -222,5 +222,22 @@ dialog{
 
     display: flex;
     gap: 20px;
+  }
+}
+
+.item-details-modal, .project-details-modal{
+  width: 40vw;
+  height: 30vh;
+
+  h3{
+    border-bottom: 1px solid black;
+    width: 100%;
+    padding-bottom: 10px;
+    font-size: f.$big-text;
+  }
+
+  p{
+    max-width: 30vw;
+    overflow-wrap: break-word;
   }
 }
