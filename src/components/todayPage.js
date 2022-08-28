@@ -3,7 +3,9 @@ import { createWithClass, createAndAppendText, createProjectLi } from "../helper
 export default function todayPage(items){
   const content = createWithClass("div","project-wrapper");
 
-  createAndAppendText("h2",content,"Today");
+  const div = createWithClass("div", "title-div");
+  createAndAppendText("h2",div,"Today");
+  content.appendChild(div);
 
   if(items.length === 0){
     const noItemsMessage = document.createElement("p");

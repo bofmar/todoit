@@ -71,6 +71,14 @@
     }
   }
 
+  .no-items-left{
+    grid-row: 3/span 1;
+    grid-column: 3/ span 7;
+    justify-self: center;
+    align-self: start;
+    font-size: f.$big-text;
+  }
+
   .items-list{
     grid-row: 3/span 1;
     grid-column: 3/ span 7;

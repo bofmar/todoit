@@ -3,7 +3,9 @@ import { createWithClass, createAndAppendText, createProjectLi } from "../helper
 export default function upcomingPage(items){
   const content = createWithClass("div","project-wrapper");
 
-  createAndAppendText("h2",content,"Upcoming");
+  const div = createWithClass("div", "title-div");
+  createAndAppendText("h2",div,"Upcoming");
+  content.appendChild(div);
 
   if(items.length === 0){
     const noItemsMessage = document.createElement("p");
