@@ -1,11 +1,6 @@
 import format from "date-fns/format";
 import compareDesc from "date-fns/compareDesc";
 import parseISO from "date-fns/parseISO";
-import { compareAsc } from "date-fns";
-
-export function test(){
-  getOneWeek();
-}
 
 export function getToday(){
   const currentDate = new Date();

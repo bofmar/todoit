@@ -1,6 +1,4 @@
 // OBJECTS
-import toDoItem from "./classes/todo.js";
-import Project from "./classes/project.js";
 import MasterProject from "./classes/master.js";
 // PAGES
 import sidebar from "./components/sidebar.js";
@@ -70,7 +68,7 @@ let lastTheme = localStorage.getItem("theme") || "light";
 
   document.querySelector(".add-project-button").addEventListener("click", ()=> {
     addProjectModal.showModal();
-  }); // pop the add project dialogue
+  });
 
   document.querySelector(".project-modal-cancel").addEventListener("click", (e)=> {
     e.preventDefault();
