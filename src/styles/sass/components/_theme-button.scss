@@ -1,0 +1,12 @@
+@use "../abstracts/colors" as c;
+
+.theme{
+  width: 60px;
+  height: 60px;
+  background-color: c.$primary;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

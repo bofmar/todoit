@@ -21,6 +21,8 @@ import { createProjectLi, createNavProjectLi } from "./helpers.js";
 import { getToday, filterWithinWeek, compare, isExpired, expiresToday, expiresInAWeek } from "./time.js";
 
 import "./styles/sass/index.scss";
+import dark from "./assets/svg/dark-mode.svg";
+import light from "./assets/svg/light-mode.svg";
 
 const body = document.querySelector("body");
 const master = new MasterProject();
@@ -42,15 +44,21 @@ console.log(lastTheme);
 (function initialize(){
   const themeButton = document.createElement("button");
   themeButton.classList.add("theme");
-  themeButton.innerText = "test";
   body.appendChild(themeButton);
-  themeButton.addEventListener("click", ()=> {
-    changeTheme();
+  themeButton.addEventListener("click", (e)=> {
+    changeTheme(e);
   });
+
+  const themeIcon = new Image();
 
   if(lastTheme === "dark"){
     body.classList.add("dark");
+    themeIcon.src = dark;
   }
+  else{
+    themeIcon.src = light;
+  }
+  themeButton.appendChild(themeIcon);  
 
   body.appendChild(projectPanel(master));
 
@@ -571,15 +579,21 @@ function sortByDate(e){
   hookButtons();
 }
 
-function changeTheme(){
+function changeTheme(e){
   body.classList.toggle("dark");
+  console.log(e.target.parentNode);
+  const button = e.target.parentNode;
+  button.removeChild(button.lastChild);
+  const icon = new Image()
   if(lastTheme === "light"){
     lastTheme = "dark";
+    icon.src = dark;
   }
   else{
     lastTheme = "light";
+    icon.src = light;
   }
-  console.log(lastTheme);
+  button.appendChild(icon);
   save();
 }
 
