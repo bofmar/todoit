@@ -32,6 +32,8 @@ const addProjectModal = addProject();
 body.appendChild(addProjectModal);
 const addProjectForm = addProjectModal.querySelector("form");
 
+const themeButton = document.createElement("button");
+
 const footer = footerComp();
 body.appendChild(footer);
 
@@ -39,11 +41,10 @@ let currentPage = "All Projects";
 let lastTheme = localStorage.getItem("theme") || "light";
 
 (function initialize(){
-  const themeButton = document.createElement("button");
   themeButton.classList.add("theme");
   body.appendChild(themeButton);
-  themeButton.addEventListener("click", (e)=> {
-    changeTheme(e);
+  themeButton.addEventListener("click", ()=> {
+    changeTheme();
   });
 
   const themeIcon = new Image();
@@ -576,10 +577,9 @@ function sortByDate(e){
   hookButtons();
 }
 
-function changeTheme(e){
+function changeTheme(){
   body.classList.toggle("dark");
-  const button = e.target.parentNode;
-  button.removeChild(button.lastChild);
+  themeButton.removeChild(themeButton.lastChild);
   const icon = new Image()
   if(lastTheme === "light"){
     lastTheme = "dark";
@@ -589,7 +589,7 @@ function changeTheme(e){
     lastTheme = "light";
     icon.src = light;
   }
-  button.appendChild(icon);
+  themeButton.appendChild(icon);
   save();
 }
 
