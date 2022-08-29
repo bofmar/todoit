@@ -3,6 +3,6 @@
 @use "./components/board";
 @use "./components/footer";
 @use "./components/modals";
-@use "./abstracts/colors" as c;
+@use "./components/dark";
 @import "./components/reset";
 @import "./components/pageLayout";

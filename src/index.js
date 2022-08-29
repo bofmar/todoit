@@ -23,6 +23,7 @@ import { getToday, filterWithinWeek, compare, isExpired, expiresToday, expiresIn
 import "./styles/sass/index.scss";
 
 const body = document.querySelector("body");
+body.classList.add("dark"); //remove this
 const master = new MasterProject();
 master.parseFromJSON(localStorage.master);
 
