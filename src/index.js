@@ -39,7 +39,6 @@ body.appendChild(footer);
 
 let currentPage = "All Projects";
 let lastTheme = localStorage.getItem("theme") || "light";
-console.log(lastTheme);
 
 (function initialize(){
   const themeButton = document.createElement("button");
@@ -581,7 +580,6 @@ function sortByDate(e){
 
 function changeTheme(e){
   body.classList.toggle("dark");
-  console.log(e.target.parentNode);
   const button = e.target.parentNode;
   button.removeChild(button.lastChild);
   const icon = new Image()
