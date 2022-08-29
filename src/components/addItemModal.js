@@ -19,6 +19,7 @@ export default function addItemModal(projects,currentPage){
   const titleField = document.createElement("input");
   setFieldAttributes(titleField,"text","item-title","title");
   titleField.setAttribute("pattern",".+");
+  titleField.setAttribute("maxlength", "30");
   titleField.required = true;
   titleDiv.appendChild(titleField);
   form.appendChild(titleDiv);
