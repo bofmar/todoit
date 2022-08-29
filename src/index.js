@@ -23,7 +23,6 @@ import { getToday, filterWithinWeek, compare, isExpired, expiresToday, expiresIn
 import "./styles/sass/index.scss";
 
 const body = document.querySelector("body");
-body.classList.add("dark"); //remove this
 const master = new MasterProject();
 master.parseFromJSON(localStorage.master);
 
@@ -37,8 +36,22 @@ const footer = footerComp();
 body.appendChild(footer);
 
 let currentPage = "All Projects";
+let lastTheme = localStorage.getItem("theme") || "light";
+console.log(lastTheme);
 
 (function initialize(){
+  const themeButton = document.createElement("button");
+  themeButton.classList.add("theme");
+  themeButton.innerText = "test";
+  body.appendChild(themeButton);
+  themeButton.addEventListener("click", ()=> {
+    changeTheme();
+  });
+
+  if(lastTheme === "dark"){
+    body.classList.add("dark");
+  }
+
   body.appendChild(projectPanel(master));
 
   hookButtons();
@@ -558,6 +571,19 @@ function sortByDate(e){
   hookButtons();
 }
 
+function changeTheme(){
+  body.classList.toggle("dark");
+  if(lastTheme === "light"){
+    lastTheme = "dark";
+  }
+  else{
+    lastTheme = "light";
+  }
+  console.log(lastTheme);
+  save();
+}
+
 function save(){
   localStorage.setItem("master", JSON.stringify(master));
+  localStorage.setItem("theme", lastTheme);
 }
