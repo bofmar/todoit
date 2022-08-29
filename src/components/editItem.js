@@ -20,7 +20,7 @@ export default function editItem(projects,item){
   setFieldAttributes(titleField,"text","edit-title","title");
   titleField.required = true;
   titleField.setAttribute("pattern",".+");
-  titleField.setAttribute("maxlength", "30");
+  titleField.setAttribute("maxlength", "45");
   titleField.value = item.getTitle();
   titleDiv.appendChild(titleField);
   form.appendChild(titleDiv);
