@@ -1,6 +1,6 @@
 # todo-It
 
-A simple, easy to use, todo web-app. Made with Javascript. [See it live here]().
+A simple, easy to use, todo web-app. Made with Javascript. [See it live here](https://bofmar.github.io/todoit/).
 
 # Features
 * Add and remove todos to your projects. Modify already existing todos.
