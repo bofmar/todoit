@@ -35,6 +35,7 @@ export default function editProject(project){
     areaField.value = project.getDescription();
   }
   areaField.setAttribute("rows","7");
+  areaField.setAttribute("maxlength", "130");
   areaDiv.appendChild(areaField);
   form.appendChild(areaDiv);
 

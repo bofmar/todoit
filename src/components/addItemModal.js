@@ -42,6 +42,7 @@ export default function addItemModal(projects,currentPage){
   areaField.setAttribute("name", "description");
   areaField.setAttribute("placeholder", "No description...");
   areaField.setAttribute("rows","7");
+  areaField.setAttribute("maxlength", "130");
   areaDiv.appendChild(areaField);
   form.appendChild(areaDiv);
 
