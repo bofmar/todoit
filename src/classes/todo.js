@@ -1,12 +1,17 @@
-export default class toDoItem{
+export default class ToDoItem {
   #title;
+
   #dueDate;
+
   #description;
+
   #priority;
+
   #done;
+
   #id;
 
-  constructor(title,dueDate,description,priority,id,done){
+  constructor(title, dueDate, description, priority, id, done) {
     this.#title = title;
     this.#dueDate = dueDate;
     this.#description = description;
@@ -16,43 +21,52 @@ export default class toDoItem{
   }
 
   // geters
-  getTitle(){
+  getTitle() {
     return this.#title;
   }
-  getDueDate(){
+
+  getDueDate() {
     return this.#dueDate;
   }
-  getDescription(){
+
+  getDescription() {
     return this.#description;
   }
-  getPriority(){
+
+  getPriority() {
     return this.#priority;
   }
-  getID(){
+
+  getID() {
     return this.#id;
   }
-  isDone(){
+
+  isDone() {
     return this.#done;
   }
 
-  //seters
-  setTitle(newTitle){
+  // seters
+  setTitle(newTitle) {
     this.#title = newTitle;
   }
-  setDueDate(newDate){
+
+  setDueDate(newDate) {
     this.#dueDate = newDate;
   }
-  setDescription(newDescription){
+
+  setDescription(newDescription) {
     this.#description = newDescription;
   }
-  setPriority(newPriority){
+
+  setPriority(newPriority) {
     this.#priority = newPriority;
   }
-  flipDone(){
+
+  flipDone() {
     this.#done = !this.#done;
   }
 
-  toJSON(){
+  toJSON() {
     return {
       title: this.getTitle(),
       dueDate: this.getDueDate(),
@@ -60,6 +74,6 @@ export default class toDoItem{
       priority: this.getPriority(),
       done: this.isDone(),
       id: this.getID(),
-    }
+    };
   }
 }

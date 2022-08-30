@@ -1,10 +1,13 @@
-export default class Project{
+export default class Project {
   #title;
+
   #itemsList;
+
   #description;
+
   #id;
 
-  constructor(title,itemsList,description){
+  constructor(title, itemsList, description) {
     this.#title = title;
     this.#itemsList = itemsList || [];
     this.#description = description;
@@ -12,50 +15,58 @@ export default class Project{
   }
 
   // geters
-  getTitle(){
+  getTitle() {
     return this.#title;
   }
-  getItemsList(){
+
+  getItemsList() {
     return this.#itemsList;
   }
-  getDescription(){
+
+  getDescription() {
     return this.#description;
   }
-  getID(){
+
+  getID() {
     return this.#id;
   }
 
   // seters
-  setTitle(newTitle){
+  setTitle(newTitle) {
     this.#title = newTitle;
   }
-  setDescription(newDescription){
+
+  setDescription(newDescription) {
     this.#description = newDescription;
   }
 
-  length(){
+  length() {
     return this.getItemsList().length;
   }
-  addItem(item){
+
+  addItem(item) {
     this.#itemsList.push(item);
   }
-  removeItem(item){
-    const index = this.getItemsList().findIndex(toDoItem => toDoItem.getID() === item.getID()); // find the index of the element we want to remove
-    if(index === -1) return; // see if we found the element
-    this.#itemsList.splice(index,1);
+
+  removeItem(item) {
+    const index = this.getItemsList().findIndex((toDoItem) => toDoItem.getID() === item.getID());
+    // find the index of the element we want to remove
+    if (index === -1) return; // see if we found the element
+    this.#itemsList.splice(index, 1);
   }
-  findItem(item){
-    const index = this.getItemsList().findIndex(toDoItem => toDoItem.getID() === item.getID());
-    if(index === -1) return; // see if we found the element
+
+  findItem(item) {
+    const index = this.getItemsList().findIndex((toDoItem) => toDoItem.getID() === item.getID());
+    if (index === -1) return null; // see if we found the element
     return this.getItemsList()[index];
   }
 
-  toJSON(){
+  toJSON() {
     return {
-      title : this.getTitle(),
-      itemsList : this.getItemsList(),
-      description : this.getDescription(),
+      title: this.getTitle(),
+      itemsList: this.getItemsList(),
+      description: this.getDescription(),
       id: this.getID(),
-    }
+    };
   }
 }
