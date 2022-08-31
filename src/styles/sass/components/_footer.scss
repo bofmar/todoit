@@ -2,7 +2,7 @@
 @use "../abstracts/fonts" as f;
 @use "../abstracts/mixins" as m;
 
-footer{
+footer {
   background-color: c.$secondary;
   font-family: f.$popins;
 
@@ -12,18 +12,18 @@ footer{
   align-items: center;
   gap: 10px;
 
-  h3{
+  h3 {
     font-weight: normal;
   }
 
-  div{
+  div {
     display: flex;
     gap: 10px;
   }
 
-  img{
+  img {
     width: 25px;
-    height:25px;
+    height: 25px;
 
     @include m.button-hover();
   }

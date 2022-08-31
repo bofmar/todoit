@@ -49,14 +49,18 @@ export default class Project {
   }
 
   removeItem(item) {
-    const index = this.getItemsList().findIndex((toDoItem) => toDoItem.getID() === item.getID());
+    const index = this.getItemsList().findIndex(
+      (toDoItem) => toDoItem.getID() === item.getID()
+    );
     // find the index of the element we want to remove
     if (index === -1) return; // see if we found the element
     this.#itemsList.splice(index, 1);
   }
 
   findItem(item) {
-    const index = this.getItemsList().findIndex((toDoItem) => toDoItem.getID() === item.getID());
+    const index = this.getItemsList().findIndex(
+      (toDoItem) => toDoItem.getID() === item.getID()
+    );
     if (index === -1) return null; // see if we found the element
     return this.getItemsList()[index];
   }

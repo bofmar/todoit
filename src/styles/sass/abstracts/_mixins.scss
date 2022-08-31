@@ -1,68 +1,68 @@
 @use "./fonts" as f;
 
-@mixin button-with-icon($color){
+@mixin button-with-icon($color) {
   width: 25px;
   height: 50px;
 
-  img{
+  img {
     filter: pick-color($color);
   }
 
-  &::after{
+  &::after {
     width: 0px;
   }
 
-  &:hover{
+  &:hover {
     transform: scale(1.3);
     transition: all 200ms ease-in;
   }
 }
 
-@function pick-color($color){
-  @if($color == "red"){
-    @return invert(27%) sepia(72%) saturate(1563%) hue-rotate(332deg) brightness(86%) contrast(88%);
-  }
-  @else{
-    @return invert(96%) sepia(16%) saturate(215%) hue-rotate(172deg) brightness(98%) contrast(93%);
+@function pick-color($color) {
+  @if ($color == "red") {
+    @return invert(27%) sepia(72%) saturate(1563%) hue-rotate(332deg)
+      brightness(86%) contrast(88%);
+  } @else {
+    @return invert(96%) sepia(16%) saturate(215%) hue-rotate(172deg)
+      brightness(98%) contrast(93%);
   }
 }
 
-@mixin button-hover($time: 200, $scale:1.2){
+@mixin button-hover($time: 200, $scale: 1.2) {
   transition: all #{$time}ms ease-in;
 
-  &:hover{
+  &:hover {
     transform: scale($scale);
     transition: all #{$time}ms ease-in;
   }
 }
 
-@mixin form-pair(){
+@mixin form-pair() {
   display: flex;
   flex-direction: column;
 }
 
-@mixin validate(){
-  &:invalid{
+@mixin validate() {
+  &:invalid {
     background-color: ivory;
     border: none;
     outline: 2px solid red;
-
   }
-  &:valid{
+  &:valid {
     border: none;
     outline: 2px solid green;
   }
 }
 
-@mixin modal-base(){
+@mixin modal-base() {
   display: grid;
 
   gap: 10px;
   align-items: start;
   justify-items: start;
 
-  h3{
-    grid-column: 1/span 2;
+  h3 {
+    grid-column: 1 / span 2;
     align-self: center;
     width: 100%;
     padding-bottom: 10px;
@@ -71,8 +71,8 @@
     border-bottom: solid 1px black;
   }
 
-  div{
-    &:not(:last-child){
+  div {
+    &:not(:last-child) {
       @include form-pair();
     }
   }

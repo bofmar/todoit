@@ -1,40 +1,42 @@
-.dark{
+.dark {
   $d-primary: #1b1b1b;
   $d-secondary: #4e4e4e;
 
   $d-text: #e8edf0;
 
-  button{
+  button {
     color: $d-text;
   }
 
-  nav{
+  nav {
     background-color: $d-secondary;
-  
-    .todoit{
+
+    .todoit {
       color: $d-text;
     }
   }
 
-  .project-wrapper{
-    background-color: $d-primary;  
+  .project-wrapper {
+    background-color: $d-primary;
     color: $d-text;
 
-    .sort-by-name{
-      filter: invert(98%) sepia(6%) saturate(477%) hue-rotate(171deg) brightness(98%) contrast(92%);
+    .sort-by-name {
+      filter: invert(98%) sepia(6%) saturate(477%) hue-rotate(171deg)
+        brightness(98%) contrast(92%);
     }
 
-    .sort-by-date{
-      filter: invert(98%) sepia(6%) saturate(477%) hue-rotate(171deg) brightness(98%) contrast(92%);
+    .sort-by-date {
+      filter: invert(98%) sepia(6%) saturate(477%) hue-rotate(171deg)
+        brightness(98%) contrast(92%);
     }
   }
 
-  footer{
-    background-color: $d-primary;  
+  footer {
+    background-color: $d-primary;
     color: $d-text;
   }
 
-  .modal{
+  .modal {
     background-color: $d-secondary;
     color: $d-text;
     border: none;
